@@ -21,6 +21,15 @@ from newsApp.models import NewsTech
 
 # 全局设置参数
 class GlobalSetting(object):
+    # 在左侧栏添加额外菜单
+    def get_site_menu(self):  #名称不能改
+        return [
+            {
+                'title' : '首页',
+                'icon': 'fa fa-home',
+                'url': 'http://127.0.0.1:8000/xadmin/',
+            }
+        ]
     # 设置后台顶部标题
     site_title = '新闻后台管理'
     # 设置后台底部标题
