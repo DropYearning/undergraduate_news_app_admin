@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my APPS
-    'testApp',
+    'newsApp',
     'xadmin',
     'crispy_forms',
 ]
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'news_app_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
-        'NAME': 'test',  # 数据库名，先前创建的
+        'NAME': 'news_app',  # 数据库名，先前创建的
         'USER': 'root',     # 用户名，可以自己创建用户
         'PASSWORD': 'hdu123456',  # 密码
         'HOST': '127.0.0.1',  # mysql服务所在的主机ip
@@ -113,9 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
