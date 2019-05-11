@@ -1,5 +1,4 @@
 #!/Users/brightzh/PycharmProjects/news_app_django/venv/bin/python
-
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -233,6 +233,9 @@ class DeleteRelateDisplayPlugin(BaseRelateDisplayPlugin):
     def block_form_fields(self, context, nodes):
         return self._get_input()
 
+
+
+
 site.register_plugin(RelateMenuPlugin, ListAdminView)
 site.register_plugin(ListRelateDisplayPlugin, ListAdminView)
 site.register_plugin(EditRelateDisplayPlugin, CreateAdminView)

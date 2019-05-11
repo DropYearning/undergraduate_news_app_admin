@@ -10,19 +10,19 @@ from django.db import models
 
 # 国内新闻
 class NewsDomestic(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -34,19 +34,19 @@ class NewsDomestic(models.Model):
 
 # 国际新闻
 class NewsInternational(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -56,19 +56,19 @@ class NewsInternational(models.Model):
 
 # 汽车新闻
 class NewsCar(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -78,19 +78,19 @@ class NewsCar(models.Model):
 
 # 数码新闻
 class NewsDigit(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -100,19 +100,19 @@ class NewsDigit(models.Model):
 
 # 教育新闻
 class NewsEdu(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -122,19 +122,19 @@ class NewsEdu(models.Model):
 
 # 娱乐新闻
 class NewsEntertainment(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -144,19 +144,19 @@ class NewsEntertainment(models.Model):
 
 # 房地产新闻
 class NewsEstate(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -166,19 +166,19 @@ class NewsEstate(models.Model):
 
 # 财经新闻
 class NewsFinance(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -188,19 +188,19 @@ class NewsFinance(models.Model):
 
 # 游戏新闻
 class NewsGame(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -210,19 +210,19 @@ class NewsGame(models.Model):
 
 # 互联网新闻
 class NewsInternet(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -232,19 +232,19 @@ class NewsInternet(models.Model):
 
 # 军事新闻
 class NewsMilitary(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -254,19 +254,19 @@ class NewsMilitary(models.Model):
 
 # 社会新闻
 class NewsSociety(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False
@@ -276,18 +276,19 @@ class NewsSociety(models.Model):
 
 # 体育新闻
 class NewsSport(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
     picurl3 = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -298,19 +299,19 @@ class NewsSport(models.Model):
 
 # 科技新闻
 class NewsTech(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    source = models.CharField(max_length=255, blank=True, null=True)
-    pubtime = models.DateTimeField(blank=True, null=True)
-    savetime = models.DateTimeField(blank=True, null=True)
-    link = models.CharField(max_length=255, blank=True, null=True)
-    havepic = models.IntegerField(blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
-    html = models.TextField(blank=True, null=True)
-    picurl1 = models.CharField(max_length=255, blank=True, null=True)
-    picurl2 = models.CharField(max_length=255, blank=True, null=True)
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255, verbose_name="主键")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="标题")
+    channelname = models.CharField(db_column='channelName', max_length=255, blank=True, null=True, verbose_name="频道")  # Field name made lowercase.
+    source = models.CharField(max_length=255, blank=True, null=True, verbose_name="来源")
+    pubtime = models.DateTimeField(blank=True, null=True, verbose_name="发布时间")
+    savetime = models.DateTimeField(blank=True, null=True, verbose_name="收录时间")
+    link = models.CharField(max_length=255, blank=True, null=True, verbose_name="原链接")
+    havepic = models.IntegerField(blank=True, null=True, verbose_name="图片数")
+    content = models.TextField(blank=True, null=True, verbose_name="正文")
+    html = models.TextField(blank=True, null=True, verbose_name="HTML")
+    picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
+    picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
+    picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
 
     class Meta:
         managed = False

@@ -121,7 +121,8 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# 设置是否使用国际时间, 若使用会出现数据表显示时间错误的情况
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

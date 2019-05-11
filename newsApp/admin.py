@@ -40,9 +40,11 @@ class GlobalSetting(object):
 
 class BaseSetting(object):
     # 启用主题管理器   
+
     enable_themes = True
     # 使用主题 
     use_bootswatch = True
+
 
 
 # 注册主题设置
@@ -53,116 +55,130 @@ xadmin.site.register(views.CommAdminView, GlobalSetting)
 
 # 模型配置类
 class NewsCarAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-truck'  # 自定义图标,来源:fontawesome
-
+    # list_display_links = ['link']  # 设置link字段为超链接
+    show_terminal = True
 
 
 class NewsDigitAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-desktop'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsDomesticAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-flag'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsEduAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-book'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsEstateAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-home'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsEntertainmentAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-film'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsFinanceAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-usd'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsGameAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-gamepad'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsInternationalAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-globe'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsInternetAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-cloud'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsMilitaryAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-fighter-jet'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsSocietyAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-users'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsSportAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-trophy'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 class NewsTechAdmin(object):
-    list_display = ('title', 'savetime', 'link')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-flask'
+    # list_display_links = ['link']  # 设置link字段为超链接
 
 
 # 注册模型
