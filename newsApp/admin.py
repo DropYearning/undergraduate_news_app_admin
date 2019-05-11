@@ -25,10 +25,11 @@ class GlobalSetting(object):
     def get_site_menu(self):  #名称不能改
         return [
             {
-                'title': '首页',
-                'icon': 'fa fa-home',
-                'url': 'http://127.0.0.1:8000/xadmin/',
-            }
+                # 这是自行添加的菜单项"统计"
+                'title': '统计',
+                'icon': 'fa fa-list-alt',
+                'url': 'http://127.0.0.1:8000/xadmin/analysis',
+            },
         ]
     # 设置后台顶部标题
     site_title = '新闻后台管理'
@@ -36,6 +37,12 @@ class GlobalSetting(object):
     site_footer = '毕业设计《基于Android的新闻推荐客户端设计与实现》 15051349 周亮'
     # 设置菜单可折叠
     menu_style = "accordion"
+
+
+# 从你的app的view里引入你将要写的view，你也可以另外写一个py文件，把后台的view集中在一起方便管理
+from .views import AnalysisView
+# 注册自定义view (路由, 类名)
+xadmin.site.register_view(r'analysis/$', AnalysisView, name='for_test')
 
 
 # 基本设置参数
