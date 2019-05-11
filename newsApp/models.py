@@ -317,3 +317,28 @@ class NewsTech(models.Model):
         managed = False
         db_table = 'news_tech'
         verbose_name_plural = '科技'
+
+
+# 日志
+class NewsLog(models.Model):
+    updatetime = models.DateTimeField(blank=True, null=True)
+    usedtime = models.CharField(max_length=32, blank=True, null=True)
+    all_count = models.IntegerField(blank=True, null=True)
+    car_count = models.IntegerField(blank=True, null=True)
+    digit_count = models.IntegerField(blank=True, null=True)
+    demostic_count = models.IntegerField(blank=True, null=True)
+    edu_count = models.IntegerField(blank=True, null=True)
+    entertainment_count = models.IntegerField(blank=True, null=True)
+    estate_count = models.IntegerField(blank=True, null=True)
+    finance_count = models.IntegerField(blank=True, null=True)
+    game_count = models.IntegerField(blank=True, null=True)
+    international_count = models.IntegerField(blank=True, null=True)
+    internet_count = models.IntegerField(blank=True, null=True)
+    military_count = models.IntegerField(blank=True, null=True)
+    society_count = models.IntegerField(blank=True, null=True)
+    sport_count = models.IntegerField(blank=True, null=True)
+    tech_count = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'news_log'

@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 import xadmin
 
+admin.autodiscover()
+
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),

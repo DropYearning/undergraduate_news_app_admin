@@ -17,6 +17,7 @@ from newsApp.models import NewsMilitary
 from newsApp.models import NewsSociety
 from newsApp.models import NewsSport
 from newsApp.models import NewsTech
+from newsApp.models import NewsLog
 
 
 # 全局设置参数
@@ -187,6 +188,10 @@ class NewsTechAdmin(object):
     # list_display_links = ['link']  # 设置link字段为超链接
 
 
+class NewsLogAdmin(object):
+    hidden_menu = True  # 设置不显示此模块菜单
+
+
 # 注册模型
 xadmin.site.register(NewsCar, NewsCarAdmin)
 xadmin.site.register(NewsDigit, NewsDigitAdmin)
@@ -202,3 +207,4 @@ xadmin.site.register(NewsMilitary, NewsMilitaryAdmin)
 xadmin.site.register(NewsSociety, NewsSocietyAdmin)
 xadmin.site.register(NewsSport, NewsSportAdmin)
 xadmin.site.register(NewsTech, NewsTechAdmin)
+xadmin.site.register(NewsLog, NewsLogAdmin)

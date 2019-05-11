@@ -1,0 +1,94 @@
+{% extends 'xadmin/base.html' %}
+{% load i18n xadmin_tags %}
+{% block title %}{{ title }} | {{ site_title }}{% endblock %}
+
+{% block body %}
+    <!-- 顶栏 -->
+    {% block top-nav %}
+        <div id="top-nav" class="navbar navbar-xs navbar-inverse navbar-fixed-top">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://127.0.0.1:8000/xadmin/">
+                    {% block branding %}{{ site_title }}{% endblock %}</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav pull-right">
+                    {% view_block 'top_navmenu' %}
+                    {% if user.is_active and user.is_staff %}
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                                <strong>{% trans 'Welcome,' %} {% firstof user.first_name user.username %}</strong>
+                                <span class="caret"></span></a>
+                            <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                                {% view_block 'top_account_menu' %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <li><a href="{% url 'xadmin:logout' %}"><i class="show-sm fa fa-sign-out"></i><span
+                            class="hide-sm">{% trans 'Log out' %}</span></a></li>
+                </ul>
+                {% view_block 'top_navbar' %}
+            </div>
+        </div>
+    {% endblock %}
+
+    <!-- Header -->
+    <div id="body-content" class="clearfix row">
+        <div id="left-side" class="col-sm-1 col-md-2">
+            {% block navbar %}
+                {% if nav_menu %}
+                    {% include menu_template %}
+                {% else %}
+                    <p>{% trans "You don't have permission to edit anything." %}</p>
+                {% endif %}
+            {% endblock %}
+            {% view_block 'left_navbar' %}
+        </div>
+
+        <!-- 首页/模块名 -->
+        <div id="content-block" class="col-sm-11 col-md-10">
+            {% block breadcrumbs %}
+                <ul class="breadcrumb">
+                    {% if breadcrumbs %}
+                        {% for bc in breadcrumbs %}
+                            <li>
+                                {% if forloop.last or not bc.url %}{{ bc.title }}
+                                {% else %}<a href="{{ bc.url }}">{{ bc.title }}</a>{% endif %}
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <li><a href="{% url 'xadmin:index' %}">{% trans 'Home' %}</a></li>
+                        {% if title %}{{ title }}{% endif %}
+                    {% endif %}
+                </ul>
+            {% endblock %}
+
+
+            {% block messages %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-dismissable{% if message.tags %} {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %}{% endif %}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ message|safe }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endblock messages %}
+
+            <!-- 自定义块 -->
+            {% block content %}
+                {{ content }}
+            {% endblock %}
+        </div>
+    </div>
+
+    <!--页脚 -->
+    {% block footer %}
+        <div id="footer">
+            <hr/>
+            <footer class="text-center">
+                <p>&copy; {% block site_footer %}{{ site_footer }}{% endblock %}</p>
+            </footer>
+        </div>
+    {% endblock %}
+
+{% endblock body %}
