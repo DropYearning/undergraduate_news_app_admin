@@ -28,6 +28,8 @@ class AnalysisView(CommAdminView):
         context["breadcrumbs"].append({'url': '/cwyadmin/', 'title': title})  # 把面包屑变量添加到context里面
         context["title"] = title  # 把面包屑变量添加到context里面
 
+        # dict用于向HTML页面传递参数
+        dict = { }
         # 统计新闻条数
         carNewsCount = models.NewsCar.objects.all().aggregate(Count('id'))['id__count']
         digitNewsCount = models.NewsDigit.objects.all().aggregate(Count('id'))['id__count']
@@ -45,21 +47,21 @@ class AnalysisView(CommAdminView):
         techNewsCount = models.NewsTech.objects.all().aggregate(Count('id'))['id__count']
         allNewsCount = carNewsCount + digitNewsCount + domesticNewsCount + eduNewsCount + entertaionmentNewsCount + estateNewsCount + finaceNewsCount + gameNewsCount + internationalNewsCount + internetNewsCount + militaryNewsCount + societyNewsCount + sportNewsCount + techNewsCount
         # 数据库中各频道新闻数量
-        context["carNewsCount"] = carNewsCount
-        context["digitNewsCount"] = digitNewsCount
-        context["domesticNewsCount"] = domesticNewsCount
-        context["eduNewsCount"] = eduNewsCount
-        context["entertaionmentNewsCount"] = entertaionmentNewsCount
-        context["estateNewsCount"] = estateNewsCount
-        context["finaceNewsCount"] = finaceNewsCount
-        context["gameNewsCount"] = gameNewsCount
-        context["internationalNewsCount"] = internationalNewsCount
-        context["internetNewsCount"] = internetNewsCount
-        context["militaryNewsCount"] = militaryNewsCount
-        context["societyNewsCount"] = societyNewsCount
-        context["sportNewsCount"] = sportNewsCount
-        context["techNewsCount"] = techNewsCount
-        context["allNewsCount"] = allNewsCount
+        dict["carNewsCount"] = carNewsCount
+        dict["digitNewsCount"] = digitNewsCount
+        dict["domesticNewsCount"] = domesticNewsCount
+        dict["eduNewsCount"] = eduNewsCount
+        dict["entertaionmentNewsCount"] = entertaionmentNewsCount
+        dict["estateNewsCount"] = estateNewsCount
+        dict["finaceNewsCount"] = finaceNewsCount
+        dict["gameNewsCount"] = gameNewsCount
+        dict["internationalNewsCount"] = internationalNewsCount
+        dict["internetNewsCount"] = internetNewsCount
+        dict["militaryNewsCount"] = militaryNewsCount
+        dict["societyNewsCount"] = societyNewsCount
+        dict["sportNewsCount"] = sportNewsCount
+        dict["techNewsCount"] = techNewsCount
+        dict["allNewsCount"] = allNewsCount
 
         todayUpdateCount = 0
         year = time.strftime('%Y', time.localtime(time.time()))
@@ -71,10 +73,10 @@ class AnalysisView(CommAdminView):
             todayUpdateCount = todayUpdateCount + logItem.all_count
 
         # 今日入库总数量
-        context["todayUpdateCount"] = todayUpdateCount
+        dict["todayUpdateCount"] = todayUpdateCount
 
 
         #  最后指定自定义的template模板，并注入context
-        return render(request, 'analysis.html',  context)
+        return render(request, 'analysis.html',  {'dict': json.dumps(dict)})
         # 发送数据给JavaScript
 
