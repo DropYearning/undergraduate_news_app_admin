@@ -28,8 +28,6 @@ class AnalysisView(CommAdminView):
         context["breadcrumbs"].append({'url': '/cwyadmin/', 'title': title})  # 把面包屑变量添加到context里面
         context["title"] = title  # 把面包屑变量添加到context里面
 
-        # dict用于向HTML页面传递参数
-        dict = { }
         # 统计新闻条数
         carNewsCount = models.NewsCar.objects.all().aggregate(Count('id'))['id__count']
         digitNewsCount = models.NewsDigit.objects.all().aggregate(Count('id'))['id__count']
@@ -46,37 +44,80 @@ class AnalysisView(CommAdminView):
         sportNewsCount = models.NewsSport.objects.all().aggregate(Count('id'))['id__count']
         techNewsCount = models.NewsTech.objects.all().aggregate(Count('id'))['id__count']
         allNewsCount = carNewsCount + digitNewsCount + domesticNewsCount + eduNewsCount + entertaionmentNewsCount + estateNewsCount + finaceNewsCount + gameNewsCount + internationalNewsCount + internetNewsCount + militaryNewsCount + societyNewsCount + sportNewsCount + techNewsCount
-        # 数据库中各频道新闻数量
-        dict["carNewsCount"] = carNewsCount
-        dict["digitNewsCount"] = digitNewsCount
-        dict["domesticNewsCount"] = domesticNewsCount
-        dict["eduNewsCount"] = eduNewsCount
-        dict["entertaionmentNewsCount"] = entertaionmentNewsCount
-        dict["estateNewsCount"] = estateNewsCount
-        dict["finaceNewsCount"] = finaceNewsCount
-        dict["gameNewsCount"] = gameNewsCount
-        dict["internationalNewsCount"] = internationalNewsCount
-        dict["internetNewsCount"] = internetNewsCount
-        dict["militaryNewsCount"] = militaryNewsCount
-        dict["societyNewsCount"] = societyNewsCount
-        dict["sportNewsCount"] = sportNewsCount
-        dict["techNewsCount"] = techNewsCount
-        dict["allNewsCount"] = allNewsCount
+        # 返回各频道已收录新闻数量
+        context["carNewsCount"] = carNewsCount
+        context["digitNewsCount"] = digitNewsCount
+        context["domesticNewsCount"] = domesticNewsCount
+        context["eduNewsCount"] = eduNewsCount
+        context["entertainmentNewsCount"] = entertaionmentNewsCount
+        context["estateNewsCount"] = estateNewsCount
+        context["financeNewsCount"] = finaceNewsCount
+        context["gameNewsCount"] = gameNewsCount
+        context["internationalNewsCount"] = internationalNewsCount
+        context["internetNewsCount"] = internetNewsCount
+        context["militaryNewsCount"] = militaryNewsCount
+        context["societyNewsCount"] = societyNewsCount
+        context["sportNewsCount"] = sportNewsCount
+        context["techNewsCount"] = techNewsCount
+        context["allNewsCount"] = allNewsCount
 
-        todayUpdateCount = 0
+        # 返回今日更新的数量
+        allUpdateCount = 0
+        carUpdateCount = 0
+        digitUpdateCount = 0
+        domesticUpdateCount = 0
+        eduUpdateCount = 0
+        entertainmentUpdateCount = 0
+        estateUpdateCount = 0
+        financeUpdateCount = 0
+        gameUpdateCount = 0
+        internationalUpdateCount = 0
+        internetUpdateCount = 0
+        militaryUpdateCount = 0
+        societyUpdateCount = 0
+        sportUpdateCount = 0
+        techUpdateCount = 0
+
         year = time.strftime('%Y', time.localtime(time.time()))
         month = time.strftime('%m', time.localtime(time.time()))
         day = time.strftime('%d', time.localtime(time.time()))
         logItems = models.NewsLog.objects.filter(updatetime__year=year,
                                                  updatetime__month=month, updatetime__day=day)
         for logItem in logItems:
-            todayUpdateCount = todayUpdateCount + logItem.all_count
+            allUpdateCount = allUpdateCount + logItem.all_count
+            carUpdateCount = carUpdateCount + logItem.car_count
+            digitUpdateCount = digitUpdateCount + logItem.digit_count
+            domesticUpdateCount = domesticUpdateCount + logItem.demostic_count
+            eduUpdateCount = eduUpdateCount + logItem.edu_count
+            entertainmentUpdateCount = entertainmentUpdateCount + logItem.entertainment_count
+            estateUpdateCount = estateUpdateCount + logItem.estate_count
+            financeUpdateCount = financeUpdateCount + logItem.finance_count
+            gameUpdateCount = gameUpdateCount + logItem.game_count
+            internationalUpdateCount = internationalUpdateCount + logItem.international_count
+            internetUpdateCount = internetUpdateCount + logItem.internet_count
+            militaryUpdateCount = militaryUpdateCount + logItem.military_count
+            societyUpdateCount = societyUpdateCount + logItem.society_count
+            sportUpdateCount = sportUpdateCount + logItem.sport_count
+            techUpdateCount = techUpdateCount + logItem.tech_count
 
-        # 今日入库总数量
-        dict["todayUpdateCount"] = todayUpdateCount
 
+        # 注入context
+        context["allUpdateCount"] = allUpdateCount
+        context["carUpdateCount"] = carUpdateCount
+        context["digitUpdateCount"] = digitUpdateCount
+        context["domesticUpdateCount"] = domesticUpdateCount
+        context["eduUpdateCount"] = eduUpdateCount
+        context["entertainmentUpdateCount"] = entertainmentUpdateCount
+        context["estateUpdateCount"] = estateUpdateCount
+        context["financeUpdateCount"] = financeUpdateCount
+        context["gameUpdateCount"] = gameUpdateCount
+        context["internationalUpdateCount"] = internationalUpdateCount
+        context["internetUpdateCount"] = internetUpdateCount
+        context["militaryUpdateCount"] = militaryUpdateCount
+        context["societyUpdateCount"] = societyUpdateCount
+        context["sportUpdateCount"] = sportUpdateCount
+        context["techUpdateCount"] = techUpdateCount
 
-        #  最后指定自定义的template模板，并注入context
-        return render(request, 'analysis.html',  {'dict': json.dumps(dict)})
-        # 发送数据给JavaScript
+        # 注入
+        return render(request, 'analysis.html', context)
 

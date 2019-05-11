@@ -43,7 +43,7 @@ class GlobalSetting(object):
 # 从你的app的view里引入你将要写的view，你也可以另外写一个py文件，把后台的view集中在一起方便管理
 from .views import AnalysisView
 # 注册自定义view (路由, 类名)
-xadmin.site.register_view(r'analysis/$', AnalysisView, name='for_test')
+xadmin.site.register_view(r'analysis/$', AnalysisView, name='analysis')
 
 
 # 基本设置参数

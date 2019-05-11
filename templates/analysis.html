@@ -1,47 +1,148 @@
 <!-- 必须先基础xadmin基础模板 -->
 {% extends 'base_site.html' %}
 
-
 <!-- 自定义页面内容 -->
 {% block content %}
-{#    当前入库新闻总数 {{ allNewsCount }} 条<br />今日入库新闻数量 {{ todayUpdateCount }}#}
 
-   <!-- 图表容器 DOM -->
-    <div id="container" style="width: 600px;height:400px;"></div>
-    <!-- 引入 highcharts.js -->
-    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
-    <script type="text/javascript">
-        // 数据传递
-        var dict = {{ dict|safe }};
-        // 图表配置
-        var options = {
-            chart: {
-                type: 'bar'                          //指定图表的类型，默认是折线图（line）
-            },
-            title: {
-                text: '新闻数据统计'                 // 标题
-            },
-            xAxis: {
-                categories: ['国内', '国际', '财经','体育', '军事', '科技','教育','娱乐','数码','社会','汽车','游戏', '互联网', '房地产']   // x 轴分类
-            },
-            yAxis: {
-                title: {
-                    text: '新闻数目'                // y 轴标题
-                }
-            },
-            series: [{                              // 数据列
-                name: '收录总数',                        // 数据列名
-                data: [ dict['domesticNewsCount'],  dict['internationalNewsCount'],  dict['finaceNewsCount'],  dict['sportNewsCount'],  dict['militaryNewsCount'],  dict['techNewsCount'],  dict['eduNewsCount'],  dict['entertaionmentNewsCount'],  dict['digitNewsCount'],  dict['societyNewsCount'],  dict['carNewsCount'],  dict['gameNewsCount'],  dict['internetNewsCount'],  dict['estateNewsCount'] ], // 数据
-            },
-            {
-                name: '今日收录'  ,
-                data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">总收录新闻</h3>
+        </div>
+        <div class="panel-body">
+            <font size="6">{{ allNewsCount }} 条</font>
+        </div>
+    </div>
 
-            }
-            ]
-        };
-        // 图表初始化函数
-        var chart = Highcharts.chart('container', options);
-    </script>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">今日收录新闻</h3>
+        </div>
+        <div class="panel-body">
+            <font size="6">{{ allUpdateCount }} 条</font>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">分类统计</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>频道</th>
+                    <th>总收录</th>
+                    <th>今日收录</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>国内</td>
+                    <td>{{ domesticNewsCount }} 条</td>
+                    <td>{{ domesticUpdateCount }} 条</td>
+                </tr>
+                <tr>
+                    <td>国际</td>
+                    <td>{{ internationalNewsCount }} 条</td>
+                    <td>{{ internationalUpdateCount }} 条</td>
+                </tr>
+                <tr>
+                    <td>汽车</td>
+                    <td>{{ carNewsCount }} 条</td>
+                    <td>{{ carUpdateCount }} 条</td>
+                </tr>
+                <tr>
+                    <td>数码</td>
+                    <td>{{ digitNewsCount }} 条</td>
+                    <td>{{ digitUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>教育</td>
+                    <td>{{ eduNewsCount }} 条</td>
+                    <td>{{ eduUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>娱乐</td>
+                    <td>{{ entertainmentNewsCount }} 条</td>
+                    <td>{{ entertainmentUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>财经</td>
+                    <td>{{ financeNewsCount }} 条</td>
+                    <td>{{ financeUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>游戏</td>
+                    <td>{{ gameNewsCount }} 条</td>
+                    <td>{{ gameUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>军事</td>
+                    <td>{{ militaryNewsCount }} 条</td>
+                    <td>{{ militaryUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>社会</td>
+                    <td>{{ societyNewsCount }} 条</td>
+                    <td>{{ societyUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>体育</td>
+                    <td>{{ sportNewsCount }} 条</td>
+                    <td>{{ sportUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>科技</td>
+                    <td>{{ techNewsCount }} 条</td>
+                    <td>{{ techUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>互联网</td>
+                    <td>{{ internetNewsCount }} 条</td>
+                    <td>{{ internetUpdateCount }} 条</td>
+                </tr>
+
+                <tr>
+                    <td>房地产</td>
+                    <td>{{ estateNewsCount }} 条</td>
+                    <td>{{ estateUpdateCount }} 条</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">上一次更新时间</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">下一次更新时间</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
 
 {% endblock %}
