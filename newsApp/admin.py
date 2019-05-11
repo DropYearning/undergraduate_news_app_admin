@@ -25,7 +25,7 @@ class GlobalSetting(object):
     def get_site_menu(self):  #名称不能改
         return [
             {
-                'title' : '首页',
+                'title': '首页',
                 'icon': 'fa fa-home',
                 'url': 'http://127.0.0.1:8000/xadmin/',
             }
@@ -33,18 +33,17 @@ class GlobalSetting(object):
     # 设置后台顶部标题
     site_title = '新闻后台管理'
     # 设置后台底部标题
-    site_footer = '<基于Android的新闻推荐客户端设计与实现> 15051349 周亮'
+    site_footer = '毕业设计《基于Android的新闻推荐客户端设计与实现》 15051349 周亮'
     # 设置菜单可折叠
     menu_style = "accordion"
 
 
+# 基本设置参数
 class BaseSetting(object):
     # 启用主题管理器   
-
     enable_themes = True
     # 使用主题 
     use_bootswatch = True
-
 
 
 # 注册主题设置
@@ -59,7 +58,7 @@ class NewsCarAdmin(object):
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
-    model_icon = 'fa fa-truck'  # 自定义图标,来源:fontawesome
+    model_icon = 'fa fa-bars'  # 自定义图标,来源:fontawesome
     # list_display_links = ['link']  # 设置link字段为超链接
     show_terminal = True
 

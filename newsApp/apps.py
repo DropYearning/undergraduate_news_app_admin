@@ -4,4 +4,4 @@ from django.apps import AppConfig
 class TestappConfig(AppConfig):
     name = 'newsApp'
     verbose_name = '新闻'
-    model_icon = 'fa fa-bars'
+    # App的默认图标为其中第一个model的icon
