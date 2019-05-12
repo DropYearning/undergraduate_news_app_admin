@@ -19,7 +19,6 @@ from newsApp.models import NewsSport
 from newsApp.models import NewsTech
 from newsApp.models import NewsLog
 
-
 # 全局设置参数
 class GlobalSetting(object):
     # 在左侧栏添加额外菜单
@@ -29,7 +28,7 @@ class GlobalSetting(object):
                 # 这是自行添加的菜单项"统计"
                 'title': '统计',
                 'icon': 'fa fa-list-alt',
-                'url': 'http://127.0.0.1:8000/xadmin/analysis',
+                'url': 'http://111.231.57.151:8000/xadmin/analysis',
             },
         ]
     # 设置后台顶部标题
@@ -45,8 +44,8 @@ from .views import AnalysisView
 from .views import UpdateView
 
 # 注册自定义view (路由, 类名)
-xadmin.site.register_view(r'analysis/$', AnalysisView, name='analysis')
-xadmin.site.register_view(r'update/$', UpdateView, name='update')
+xadmin.site.register_view('analysis/', AnalysisView, name='analysis')
+xadmin.site.register_view('fetch/', UpdateView, name='fetch') # 若注册Url为"update"会出现与xadmin数据更新view冲突的问题
 
 
 # 基本设置参数

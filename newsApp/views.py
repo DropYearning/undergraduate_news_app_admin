@@ -247,6 +247,6 @@ class UpdateView(CommAdminView):
         context["societyUpdateCount"] = societyUpdateCount
         context["sportUpdateCount"] = sportUpdateCount
         context["techUpdateCount"] = techUpdateCount
-        return render(request, 'update.html', context)
+        return render(request, 'fetch.html', context)
 
 

@@ -26,7 +26,8 @@ SECRET_KEY = '7et1m0s*41a8z9fo)&8wgocz*3#x=s1%)5c10upvw*d#psszel'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# 实际部署到VPS需要放通域名
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -130,3 +131,5 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# 创建静态文件夹
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
