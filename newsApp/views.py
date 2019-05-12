@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.db.models import Count
 from newsApp import models
+from newsApp import mytime
+
 import time
 import json
 
@@ -28,7 +30,7 @@ class AnalysisView(CommAdminView):
         context["breadcrumbs"].append({'url': '/cwyadmin/', 'title': title})  # 把面包屑变量添加到context里面
         context["title"] = title  # 把面包屑变量添加到context里面
 
-        # 统计新闻条数
+        # 获取各频道已收录新闻数量
         carNewsCount = models.NewsCar.objects.all().aggregate(Count('id'))['id__count']
         digitNewsCount = models.NewsDigit.objects.all().aggregate(Count('id'))['id__count']
         domesticNewsCount = models.NewsDomestic.objects.all().aggregate(Count('id'))['id__count']
@@ -44,24 +46,8 @@ class AnalysisView(CommAdminView):
         sportNewsCount = models.NewsSport.objects.all().aggregate(Count('id'))['id__count']
         techNewsCount = models.NewsTech.objects.all().aggregate(Count('id'))['id__count']
         allNewsCount = carNewsCount + digitNewsCount + domesticNewsCount + eduNewsCount + entertaionmentNewsCount + estateNewsCount + finaceNewsCount + gameNewsCount + internationalNewsCount + internetNewsCount + militaryNewsCount + societyNewsCount + sportNewsCount + techNewsCount
-        # 返回各频道已收录新闻数量
-        context["carNewsCount"] = carNewsCount
-        context["digitNewsCount"] = digitNewsCount
-        context["domesticNewsCount"] = domesticNewsCount
-        context["eduNewsCount"] = eduNewsCount
-        context["entertainmentNewsCount"] = entertaionmentNewsCount
-        context["estateNewsCount"] = estateNewsCount
-        context["financeNewsCount"] = finaceNewsCount
-        context["gameNewsCount"] = gameNewsCount
-        context["internationalNewsCount"] = internationalNewsCount
-        context["internetNewsCount"] = internetNewsCount
-        context["militaryNewsCount"] = militaryNewsCount
-        context["societyNewsCount"] = societyNewsCount
-        context["sportNewsCount"] = sportNewsCount
-        context["techNewsCount"] = techNewsCount
-        context["allNewsCount"] = allNewsCount
 
-        # 返回今日更新的数量
+        # 获取各频道今日更新的数量
         allUpdateCount = 0
         carUpdateCount = 0
         digitUpdateCount = 0
@@ -101,7 +87,31 @@ class AnalysisView(CommAdminView):
             techUpdateCount = techUpdateCount + logItem.tech_count
 
 
+        # 获取最后一次更新时间
+        lastUpdateTime = models.NewsLog.objects.latest('updatetime').updatetime
+
+        # 获取下一次更新时间
+        nextUpdateTime = mytime.get_next_hour()
         # 注入context
+        context['lastUpdateTime'] = lastUpdateTime
+        context['nextUpdateTime'] = nextUpdateTime
+
+        context["carNewsCount"] = carNewsCount
+        context["digitNewsCount"] = digitNewsCount
+        context["domesticNewsCount"] = domesticNewsCount
+        context["eduNewsCount"] = eduNewsCount
+        context["entertainmentNewsCount"] = entertaionmentNewsCount
+        context["estateNewsCount"] = estateNewsCount
+        context["financeNewsCount"] = finaceNewsCount
+        context["gameNewsCount"] = gameNewsCount
+        context["internationalNewsCount"] = internationalNewsCount
+        context["internetNewsCount"] = internetNewsCount
+        context["militaryNewsCount"] = militaryNewsCount
+        context["societyNewsCount"] = societyNewsCount
+        context["sportNewsCount"] = sportNewsCount
+        context["techNewsCount"] = techNewsCount
+        context["allNewsCount"] = allNewsCount
+
         context["allUpdateCount"] = allUpdateCount
         context["carUpdateCount"] = carUpdateCount
         context["digitUpdateCount"] = digitUpdateCount

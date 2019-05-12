@@ -3,146 +3,172 @@
 
 <!-- 自定义页面内容 -->
 {% block content %}
+    <div class="container">
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">总收录新闻</h3>
+        <style>
+            #divide {
+                display: table;
+                width: 100%;
+            }
+
+            #left {
+                display: table-cell;
+                width: 50%;
+            }
+
+            #right {
+                display: table-cell;
+                width: 50%;
+            }
+        </style>
+
+
+        <div id="divide">
+            <div class="panel panel-default" id="left">
+                <div class="panel-heading">
+                    <h3 class="panel-title">总收录新闻</h3>
+                </div>
+                <div class="panel-body">
+                    <font size="6">{{ allNewsCount }} 条</font>
+                </div>
+            </div>
+
+            <div class="panel panel-default" id="right">
+                <div class="panel-heading">
+                    <h3 class="panel-title">今日收录新闻</h3>
+                </div>
+                <div class="panel-body">
+                    <font size="6">{{ allUpdateCount }} 条</font>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-            <font size="6">{{ allNewsCount }} 条</font>
+
+
+
+        <div id="divide">
+            <div class="panel panel-default" id="left">
+                <div class="panel-heading">
+                    <h3 class="panel-title">上一次更新时间</h3>
+                </div>
+                <div class="panel-body">
+                    <font size="6">{{ lastUpdateTime }}</font>
+                </div>
+            </div>
+
+            <div class="panel panel-default" id="right">
+                <div class="panel-heading">
+                    <h3 class="panel-title">下一次更新时间</h3>
+                </div>
+                <div class="panel-body">
+                    <font size="6">{{ nextUpdateTime }}</font>
+                </div>
+            </div>
         </div>
+
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">分类统计</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>频道</th>
+                        <th>总收录</th>
+                        <th>今日收录</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>国内</td>
+                        <td>{{ domesticNewsCount }} 条</td>
+                        <td>{{ domesticUpdateCount }} 条</td>
+                    </tr>
+                    <tr>
+                        <td>国际</td>
+                        <td>{{ internationalNewsCount }} 条</td>
+                        <td>{{ internationalUpdateCount }} 条</td>
+                    </tr>
+                    <tr>
+                        <td>汽车</td>
+                        <td>{{ carNewsCount }} 条</td>
+                        <td>{{ carUpdateCount }} 条</td>
+                    </tr>
+                    <tr>
+                        <td>数码</td>
+                        <td>{{ digitNewsCount }} 条</td>
+                        <td>{{ digitUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>教育</td>
+                        <td>{{ eduNewsCount }} 条</td>
+                        <td>{{ eduUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>娱乐</td>
+                        <td>{{ entertainmentNewsCount }} 条</td>
+                        <td>{{ entertainmentUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>财经</td>
+                        <td>{{ financeNewsCount }} 条</td>
+                        <td>{{ financeUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>游戏</td>
+                        <td>{{ gameNewsCount }} 条</td>
+                        <td>{{ gameUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>军事</td>
+                        <td>{{ militaryNewsCount }} 条</td>
+                        <td>{{ militaryUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>社会</td>
+                        <td>{{ societyNewsCount }} 条</td>
+                        <td>{{ societyUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>体育</td>
+                        <td>{{ sportNewsCount }} 条</td>
+                        <td>{{ sportUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>科技</td>
+                        <td>{{ techNewsCount }} 条</td>
+                        <td>{{ techUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>互联网</td>
+                        <td>{{ internetNewsCount }} 条</td>
+                        <td>{{ internetUpdateCount }} 条</td>
+                    </tr>
+
+                    <tr>
+                        <td>房地产</td>
+                        <td>{{ estateNewsCount }} 条</td>
+                        <td>{{ estateUpdateCount }} 条</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">今日收录新闻</h3>
-        </div>
-        <div class="panel-body">
-            <font size="6">{{ allUpdateCount }} 条</font>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">分类统计</h3>
-        </div>
-        <div class="panel-body">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>频道</th>
-                    <th>总收录</th>
-                    <th>今日收录</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>国内</td>
-                    <td>{{ domesticNewsCount }} 条</td>
-                    <td>{{ domesticUpdateCount }} 条</td>
-                </tr>
-                <tr>
-                    <td>国际</td>
-                    <td>{{ internationalNewsCount }} 条</td>
-                    <td>{{ internationalUpdateCount }} 条</td>
-                </tr>
-                <tr>
-                    <td>汽车</td>
-                    <td>{{ carNewsCount }} 条</td>
-                    <td>{{ carUpdateCount }} 条</td>
-                </tr>
-                <tr>
-                    <td>数码</td>
-                    <td>{{ digitNewsCount }} 条</td>
-                    <td>{{ digitUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>教育</td>
-                    <td>{{ eduNewsCount }} 条</td>
-                    <td>{{ eduUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>娱乐</td>
-                    <td>{{ entertainmentNewsCount }} 条</td>
-                    <td>{{ entertainmentUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>财经</td>
-                    <td>{{ financeNewsCount }} 条</td>
-                    <td>{{ financeUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>游戏</td>
-                    <td>{{ gameNewsCount }} 条</td>
-                    <td>{{ gameUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>军事</td>
-                    <td>{{ militaryNewsCount }} 条</td>
-                    <td>{{ militaryUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>社会</td>
-                    <td>{{ societyNewsCount }} 条</td>
-                    <td>{{ societyUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>体育</td>
-                    <td>{{ sportNewsCount }} 条</td>
-                    <td>{{ sportUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>科技</td>
-                    <td>{{ techNewsCount }} 条</td>
-                    <td>{{ techUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>互联网</td>
-                    <td>{{ internetNewsCount }} 条</td>
-                    <td>{{ internetUpdateCount }} 条</td>
-                </tr>
-
-                <tr>
-                    <td>房地产</td>
-                    <td>{{ estateNewsCount }} 条</td>
-                    <td>{{ estateUpdateCount }} 条</td>
-                </tr>
-
-                </tbody>
-            </table>
-
-        </div>
-    </div>
-
-
-
-
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">上一次更新时间</h3>
-        </div>
-        <div class="panel-body">
-            Panel content
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">下一次更新时间</h3>
-        </div>
-        <div class="panel-body">
-            Panel content
-        </div>
-    </div>
 
 {% endblock %}
