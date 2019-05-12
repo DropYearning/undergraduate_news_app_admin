@@ -42,14 +42,17 @@ class GlobalSetting(object):
 
 # 从你的app的view里引入你将要写的view，你也可以另外写一个py文件，把后台的view集中在一起方便管理
 from .views import AnalysisView
+from .views import UpdateView
+
 # 注册自定义view (路由, 类名)
 xadmin.site.register_view(r'analysis/$', AnalysisView, name='analysis')
+xadmin.site.register_view(r'update/$', UpdateView, name='update')
 
 
 # 基本设置参数
 class BaseSetting(object):
     # 启用主题管理器   
-    enable_themes = True
+    # enable_themes = True
     # 使用主题 
     use_bootswatch = True
 

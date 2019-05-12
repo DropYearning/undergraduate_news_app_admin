@@ -6,9 +6,6 @@ from datetime import datetime
 from datetime import timedelta
 
 
-def get_next_hour():
-    now = datetime.now()
-    minute = (now.strftime('%a,%b,%d %H:%M'))
-    next_hour = now + timedelta(hours=1)
+from newsApp import newsUpdate_DB
 
-    print(next_hour)
+newsUpdate_DB.Update.update(newsUpdate_DB.Update)
