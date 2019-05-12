@@ -20,22 +20,15 @@
                 display: table-cell;
                 width: 50%;
             }
+
+
         </style>
 
 
-        <div id="divide">
-            <div id="left">
+        <div class="alert alert-info fade in">
+            <button type="button" class="close" data-dismiss="info">&times;</button>
+            <strong>更新成功! 本次更新新闻{{ lastUpdateCount }} 条。</strong>
 
-                <dl>
-                    <dt>更新成功!</dt>
-                    <dd>本次更新收录数据:{{ lastUpdateCount }} 条</dd>
-                </dl>
-
-            </div>
-
-            <div id="right">
-                <button type="button" class="btn btn-primary btn-lg" onclick="javascrtpt:window.location.href='http://111.231.57.151/xadmin/fetch/'">手动执行更新</button>
-            </div>
         </div>
 
 
