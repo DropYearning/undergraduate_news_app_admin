@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = '7et1m0s*41a8z9fo)&8wgocz*3#x=s1%)5c10upvw*d#psszel'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # 实际部署到VPS需要放通域名
 ALLOWED_HOSTS = ['*']
