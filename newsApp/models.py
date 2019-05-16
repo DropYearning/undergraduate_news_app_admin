@@ -23,6 +23,7 @@ class NewsDomestic(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -47,6 +48,7 @@ class NewsInternational(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -69,6 +71,7 @@ class NewsCar(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -91,6 +94,7 @@ class NewsDigit(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -113,6 +117,7 @@ class NewsEdu(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -135,6 +140,7 @@ class NewsEntertainment(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -157,6 +163,7 @@ class NewsEstate(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -179,6 +186,7 @@ class NewsFinance(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -201,6 +209,7 @@ class NewsGame(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -223,6 +232,7 @@ class NewsInternet(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -245,6 +255,7 @@ class NewsMilitary(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -267,6 +278,7 @@ class NewsSociety(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -289,7 +301,7 @@ class NewsSport(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
-    picurl3 = models.CharField(max_length=255, blank=True, null=True)
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False
@@ -312,6 +324,7 @@ class NewsTech(models.Model):
     picurl1 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL1")
     picurl2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL2")
     picurl3 = models.CharField(max_length=255, blank=True, null=True, verbose_name="图片URL3")
+    keywords = models.CharField(max_length=255, blank=True, null=True, verbose_name="关键词")
 
     class Meta:
         managed = False

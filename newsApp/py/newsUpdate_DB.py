@@ -10,6 +10,7 @@ import datetime
 import time
 import os
 import logging
+from newsApp.py import keysExtract
 
 
 class Update:
@@ -152,9 +153,12 @@ class Update:
                         if len(newsContent) == 0: # 如果源数据没有正文出错,不录入
                             continue
                         else:
+                            # 检测到未收录再去抽取关键词,这样可以减少提取关键词方法调用的次数
+                            # 提取正文中的关键词
+                            keywords_str = keysExtract.keywords_by_jieba_TF(rowContent)
                             newsCount = newsCount + 1
                             # 定义SQL插入语句
-                            SQL_INSERT = "INSERT INTO %s (id, title, channelName, source, pubtime, savetime, link, havepic, content , html, picurl1, picurl2, picurl3) VALUES ('%s', \"%s\", '%s', '%s', '%s', '%s', '%s', %d, \"%s\", \"%s\",'%s', '%s', '%s')" % (tableName, newsMD5, newsTitle, newsChannelName, newsSource, newsPubtime, newsSaveTime, newsLink, picNum, newsContent, newsHTML, newsPicUrl1, newsPicUrl2, newsPicUrl3)
+                            SQL_INSERT = "INSERT INTO %s (id, title, channelName, source, pubtime, savetime, link, havepic, content , html, picurl1, picurl2, picurl3, keywords) VALUES ('%s', \"%s\", '%s', '%s', '%s', '%s', '%s', %d, \"%s\", \"%s\",'%s', '%s', '%s', '%s')" % (tableName, newsMD5, newsTitle, newsChannelName, newsSource, newsPubtime, newsSaveTime, newsLink, picNum, newsContent, newsHTML, newsPicUrl1, newsPicUrl2, newsPicUrl3, keywords_str)
                             try:
                                 cur.execute(SQL_INSERT)
                                 # 提交到数据库执行

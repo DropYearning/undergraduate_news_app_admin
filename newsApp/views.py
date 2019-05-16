@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.db.models import Count
 from newsApp import models
-from newsApp import mytime
-from newsApp import newsUpdate_DB
+from newsApp.py import mytime
+from newsApp.py import newsUpdate_DB
 
 import time
 import json

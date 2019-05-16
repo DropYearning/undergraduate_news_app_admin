@@ -6,6 +6,3 @@ from datetime import datetime
 from datetime import timedelta
 
 
-from newsApp import newsUpdate_DB
-
-newsUpdate_DB.Update.update(newsUpdate_DB.Update)

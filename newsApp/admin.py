@@ -64,7 +64,7 @@ xadmin.site.register(views.CommAdminView, GlobalSetting)
 
 # 模型配置类
 class NewsCarAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -75,7 +75,7 @@ class NewsCarAdmin(object):
 
 
 class NewsDigitAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -86,7 +86,7 @@ class NewsDigitAdmin(object):
 
 
 class NewsDomesticAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -97,7 +97,7 @@ class NewsDomesticAdmin(object):
 
 
 class NewsEduAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -108,7 +108,7 @@ class NewsEduAdmin(object):
 
 
 class NewsEstateAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -119,7 +119,7 @@ class NewsEstateAdmin(object):
 
 
 class NewsEntertainmentAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -130,7 +130,7 @@ class NewsEntertainmentAdmin(object):
 
 
 class NewsFinanceAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -141,7 +141,7 @@ class NewsFinanceAdmin(object):
 
 
 class NewsGameAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -152,7 +152,7 @@ class NewsGameAdmin(object):
 
 
 class NewsInternationalAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -163,7 +163,7 @@ class NewsInternationalAdmin(object):
 
 
 class NewsInternetAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -174,7 +174,7 @@ class NewsInternetAdmin(object):
 
 
 class NewsMilitaryAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -185,7 +185,7 @@ class NewsMilitaryAdmin(object):
 
 
 class NewsSocietyAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -196,7 +196,7 @@ class NewsSocietyAdmin(object):
 
 
 class NewsSportAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
@@ -207,7 +207,7 @@ class NewsSportAdmin(object):
 
 
 class NewsTechAdmin(object):
-    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic')  # 自定义表在后台的显示列
+    list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
     exclude = ['html']  # 在编辑页面隐藏的字段
