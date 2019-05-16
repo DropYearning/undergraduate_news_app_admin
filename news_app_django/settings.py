@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # api
+    'rest_framework',
+        
     # my App
     'newsApp',
     'userApp',
+    'apiApp',
 
     # Xadmin App
     'xadmin',

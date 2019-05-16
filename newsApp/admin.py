@@ -30,6 +30,13 @@ class GlobalSetting(object):
                 'icon': 'fa fa-list-alt',
                 'url': 'http://111.231.57.151:8000/xadmin/analysis',
             },
+            {
+                # 这是自行添加的菜单项"统计"
+                'title': 'API',
+                'icon': 'fa fa-plug',
+                'url': 'http://111.231.57.151:8000/xadmin/interface',
+            },
+
         ]
     # 设置后台顶部标题
     site_title = '新闻后台管理'
@@ -42,10 +49,13 @@ class GlobalSetting(object):
 # 从你的app的view里引入你将要写的view，你也可以另外写一个py文件，把后台的view集中在一起方便管理
 from .views import AnalysisView
 from .views import UpdateView
+from .views import ApiInfoView
 
 # 注册自定义view (路由, 类名)
 xadmin.site.register_view('analysis/', AnalysisView, name='analysis')
 xadmin.site.register_view('fetch/', UpdateView, name='fetch')  # 若注册Url为"update"会出现与xadmin数据更新view冲突的问题
+xadmin.site.register_view('interface/', ApiInfoView, name='interface')
+
 
 
 # 基本设置参数
@@ -70,7 +80,7 @@ class NewsCarAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-bars'  # 自定义图标,来源:fontawesome
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -81,7 +91,7 @@ class NewsDigitAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-desktop'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -92,7 +102,7 @@ class NewsDomesticAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-flag'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -103,7 +113,7 @@ class NewsEduAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-book'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -114,7 +124,7 @@ class NewsEstateAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-home'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -125,7 +135,7 @@ class NewsEntertainmentAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-film'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -136,7 +146,7 @@ class NewsFinanceAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-usd'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -147,7 +157,7 @@ class NewsGameAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-gamepad'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -158,7 +168,7 @@ class NewsInternationalAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-globe'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -169,7 +179,7 @@ class NewsInternetAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-cloud'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -180,7 +190,7 @@ class NewsMilitaryAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-fighter-jet'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -191,7 +201,7 @@ class NewsSocietyAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-users'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -202,7 +212,7 @@ class NewsSportAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-trophy'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
@@ -213,7 +223,7 @@ class NewsTechAdmin(object):
     exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-flask'
     # list_display_links = ['link']  # 设置link字段为超链接
-    search_fields = ['title']  # 设置title为可搜索字段
+    search_fields = ['title', 'keywords']  # 设置title为可搜索字段
     list_filter = ['source', 'savetime', 'pubtime']  # 设置过滤器作用字段
 
 
