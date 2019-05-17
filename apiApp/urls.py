@@ -11,5 +11,4 @@ route.register(r'user', views.UserViewSet)
 # 注册上一级的路由地址并添加
 urlpatterns = [
     url('api/', include(route.urls)),
-
 ]

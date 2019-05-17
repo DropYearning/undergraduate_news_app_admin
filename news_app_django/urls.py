@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from apiApp.views import news_edu_list
 import xadmin
 
 admin.autodiscover()
@@ -23,4 +24,6 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),
     path('', include('apiApp.urls')),
+    path('newsedu/', news_edu_list)
+
 ]
