@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
-from apiApp.views import news_edu_list
+from django.urls import path, include
+from apiApp.views import news_detail
+from apiApp.views import user_admin
+
+
 import xadmin
 
 admin.autodiscover()
@@ -23,7 +26,8 @@ admin.autodiscover()
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),
-    path('', include('apiApp.urls')),
-    path('newsedu/', news_edu_list)
+    path('user/<str:username>/<str:password>', user_admin),
+    path('detail/<str:channel>/<str:id>/', news_detail),
 
+    path('', include('apiApp.urls')),    #添加的路由地址
 ]
