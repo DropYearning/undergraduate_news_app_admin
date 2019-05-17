@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from apiApp.views import news_detail
 from apiApp.views import user_admin
-
+from apiApp.views import news_recommend_by_id
 
 import xadmin
 
@@ -28,6 +28,6 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('user/<str:username>/<str:password>', user_admin),
     path('detail/<str:channel>/<str:id>/', news_detail),
-
+    path('recommendbyid/<str:channel>/<str:id>/', news_recommend_by_id),
     path('', include('apiApp.urls')),    #添加的路由地址
 ]

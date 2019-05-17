@@ -15,6 +15,8 @@ from .serializers import UserSerializers
 from .serializers import NewsDetailSerializers
 from .serializers import NewsListSerializers
 import uuid
+# 这个库非常强大 可以实现QuerySet的合并
+from itertools import chain
 
 # 自定义的JsonResponse器,继承自HttpResponse,已不用
 class JsonResponse(HttpResponse):
@@ -86,11 +88,252 @@ def news_detail(request, channel, id):
     elif (channel == 'international'):
         news = m1.NewsInternational.objects.filter(id=id)
     if len(news) == 0:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-    # 获取电影详情资源
+        return Response(status=status.HTTP_404_NOT_FOUND,)
+    # 获取新闻详情资源
     if request.method == 'GET':
         news_serializer = NewsDetailSerializers(news, many=True)
         return Response(news_serializer.data)
+
+
+# 根据频道名和新闻ID请求若干偏与之相似的推荐的新闻
+@api_view(['GET'])
+def news_recommend_by_id(request, channel, id):
+    # 设置推荐几条新闻
+    para_news_count = 3;
+    # 判断是来自哪个频道的请求
+    if(channel == 'edu'):
+        news = m1.NewsEdu.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsEdu.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsEdu.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsEdu.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsEdu.objects.filter(keywords__contains=keyword1).filter(keywords__contains=keyword2).exclude(id=id)
+        two_match2 =m1.NewsEdu.objects.filter(keywords__contains=keyword1).filter(keywords__contains=keyword3).exclude(id=id)
+        two_match3 =m1.NewsEdu.objects.filter(keywords__contains=keyword3).filter(keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'domestic'):
+        news = m1.NewsDomestic.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsDomestic.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsDomestic.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsDomestic.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsDomestic.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsDomestic.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsDomestic.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'international'):
+        news = m1.NewsInternational.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsInternational.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsInternational.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsInternational.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsInternational.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsInternational.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsInternational.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'car'):
+        news = m1.NewsCar.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsCar.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsCar.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsCar.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsCar.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsCar.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsCar.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'digit'):
+        news = m1.NewsDigit.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsDigit.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsDigit.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsDigit.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsDigit.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsDigit.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsDigit.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'entertainment'):
+        news = m1.NewsEntertainment.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsEntertainment.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsEntertainment.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsEntertainment.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsEntertainment.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsEntertainment.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsEntertainment.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'estate'):
+        news = m1.NewsEstate.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsEstate.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsEstate.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsEstate.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsEstate.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsEstate.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsEstate.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'finance'):
+        news = m1.NewsFinance.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsFinance.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsFinance.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsFinance.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsFinance.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsFinance.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsFinance.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'game'):
+        news = m1.NewsGame.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsGame.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsGame.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsGame.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsGame.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsGame.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsGame.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'internet'):
+        news = m1.NewsInternet.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsInternet.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsInternet.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsInternet.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsInternet.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsInternet.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsInternet.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'military'):
+        news = m1.NewsMilitary.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsMilitary.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsMilitary.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsMilitary.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsMilitary.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsMilitary.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsMilitary.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+
+    elif (channel == 'society'):
+        news = m1.NewsSociety.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsSociety.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsSociety.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsSociety.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsSociety.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsSociety.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsSociety.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'sport'):
+        news = m1.NewsSport.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsSport.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsSport.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsSport.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsSport.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsSport.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsSport.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+    elif (channel == 'tech'):
+        news = m1.NewsTech.objects.get(id=id)
+        keywords_list = news.keywords.split('/')
+        keyword1 = keywords_list[0]
+        keyword2 = keywords_list[1]
+        keyword3 = keywords_list[2]
+        k1_result = m1.NewsTech.objects.filter(keywords__contains=keyword1).exclude(id=id)
+        k2_result = m1.NewsTech.objects.filter(keywords__contains=keyword2).exclude(id=id)
+        k3_result = m1.NewsTech.objects.filter(keywords__contains=keyword3).exclude(id=id)
+        two_match1 = m1.NewsTech.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword2).exclude(id=id)
+        two_match2 = m1.NewsTech.objects.filter(keywords__contains=keyword1).filter(
+            keywords__contains=keyword3).exclude(id=id)
+        two_match3 = m1.NewsTech.objects.filter(keywords__contains=keyword3).filter(
+            keywords__contains=keyword2).exclude(id=id)
+
+
+    # 筛选出匹配一个关键词的QS
+    one_match_qs = k1_result | k2_result | k3_result
+    # 筛选出匹配两个关键词的QS
+    two_match_qs = two_match1 | two_match2 | two_match3
+    # 如果two_match_qs个数>=para_news_count
+    if(len(two_match_qs) >= para_news_count):
+        # 将two_match_qs按发布时间排序,取最新的para_news_count个作为结果
+        result = two_match_qs.order_by('-pubtime')[:para_news_count]
+    else:
+        # 若two_match_qs数量不足, 先将其加入到结果中
+        result = one_match_qs | two_match_qs
+
+    if request.method == 'GET':
+        if(len(result) > para_news_count):
+            r = result.order_by('-pubtime')[:para_news_count]
+            result_serializer = NewsListSerializers(r, many=True)
+            return Response(result_serializer.data)
+        elif(len(result) == 0):
+            return Response({'info': '找不到这样的新闻', 'code': 599})
+        else:
+            result_serializer = NewsListSerializers(result, many=True)
+            return Response(result_serializer.data)
+        # return Response({'info': '找不到这样的新闻', 'code': len(result)})
 
 
 # 设置单独的分类器,继承自PageNumberPagination

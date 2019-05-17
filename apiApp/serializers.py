@@ -24,3 +24,5 @@ class NewsListSerializers(serializers.ModelSerializer):
         model = m1.NewsEdu
         fields = ('id', 'title', 'channelname', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'picurl1', 'picurl2', 'picurl3', 'keywords')
 
+
+
