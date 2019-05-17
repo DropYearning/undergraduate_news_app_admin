@@ -15,6 +15,9 @@ from .serializers import UserSerializers
 from .serializers import NewsDetailSerializers
 from .serializers import NewsListSerializers
 import uuid
+import time
+import random
+
 # 这个库非常强大 可以实现QuerySet的合并
 from itertools import chain
 
@@ -95,11 +98,41 @@ def news_detail(request, channel, id):
         return Response(news_serializer.data)
 
 
+
+
+# 随机从今天收录的新闻中推荐若干条
+@api_view(['GET'])
+def news_recommend_random(request):
+    # 设置推荐几条新闻
+    para_news_count = 3
+    year = time.strftime('%Y', time.localtime(time.time()))
+    month = time.strftime('%m', time.localtime(time.time()))
+    day = time.strftime('%d', time.localtime(time.time()))
+    # 为了减少数据库检索压力,只从国内和国际两个范围最广的频道随机选出para_news_count篇文章推荐
+    news_domestic = m1.NewsDomestic.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
+    news_international = m1.NewsInternational.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
+
+    int1 = random.randint(1, para_news_count-1)
+    int2 = para_news_count - int1
+    r1 = news_domestic.order_by('?')[:int1]
+    r2 = news_international.order_by('?')[:int2]
+    result = r1 | r2
+
+    # 下面注释掉的是另一种Django ORM提供的原生方法,但是其不能用在结果的并集中
+    # result = news_all.order_by('?')[:para_news_count]
+
+    if request.method == 'GET':
+        # return Response({'info': '找不到这样的新闻', 'p11': len(news_domestic), 'p2': len(news_international)})
+        result_serializer = NewsListSerializers(result, many=True)
+        return Response(result_serializer.data)
+
+
+
 # 根据频道名和新闻ID请求若干偏与之相似的推荐的新闻
 @api_view(['GET'])
 def news_recommend_by_id(request, channel, id):
     # 设置推荐几条新闻
-    para_news_count = 3;
+    para_news_count = 3
     # 判断是来自哪个频道的请求
     if(channel == 'edu'):
         news = m1.NewsEdu.objects.get(id=id)
