@@ -21,6 +21,7 @@ import random
 # 这个库非常强大 可以实现QuerySet的合并
 from itertools import chain
 
+
 # 自定义的JsonResponse器,继承自HttpResponse,已不用
 class JsonResponse(HttpResponse):
     def __init__(self, data, **kwargs):
@@ -55,7 +56,6 @@ def user_admin(request, username, password):
             new_uuid = uuid.uuid4()
             m2.UserInfo.objects.create(uuid=new_uuid, username=username, password=password)
             return Response({'info': '注册成功!', 'code': '600'})
-
 
 
 # 根据频道名和新闻ID请求新闻详情
@@ -112,17 +112,21 @@ def news_recommend_random(request):
     news_domestic = m1.NewsDomestic.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
     news_international = m1.NewsInternational.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
 
+    # news_car = m1.NewsCar.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
+    # news_edu = m1.NewsEdu.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
+
     int1 = random.randint(1, para_news_count-1)
     int2 = para_news_count - int1
     r1 = news_domestic.order_by('?')[:int1]
     r2 = news_international.order_by('?')[:int2]
-    result = r1 | r2
+    result = r1.union(r2)
+
 
     # 下面注释掉的是另一种Django ORM提供的原生方法,但是其不能用在结果的并集中
     # result = news_all.order_by('?')[:para_news_count]
-
     if request.method == 'GET':
-        # return Response({'info': '找不到这样的新闻', 'p11': len(news_domestic), 'p2': len(news_international)})
+        if(len(result) <= 0):
+            return Response({'info': '找不到这样的新闻', 'code': '599'})
         result_serializer = NewsListSerializers(result, many=True)
         return Response(result_serializer.data)
 
@@ -369,10 +373,14 @@ def news_recommend_by_id(request, channel, id):
         # return Response({'info': '找不到这样的新闻', 'code': len(result)})
 
 
+
+
+
+
 # 设置单独的分类器,继承自PageNumberPagination
 class MyPagination(PageNumberPagination):
     #每页显示多少个
-    page_size = 50
+    page_size = 10
     #默认每页显示10个，可以通过传入/?page=2&size=4,改变默认每页显示的个数
     page_size_query_param = "size"
     #最大页数不超过10
