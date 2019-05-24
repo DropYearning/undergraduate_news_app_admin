@@ -4,7 +4,388 @@
 <!-- 自定义页面内容 -->
 {% block content %}
 
-    API信息
+    <h3><a name="_Toc9536861"></a><a name="_Toc9425697"></a>&nbsp; 用户相关API接口</h3>
+    <p>（1）登陆</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>GET</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/user/{username}/{password}</p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="4" width="283">
+                <p>返回码</p>
+            </td>
+            <td width="283">
+                <p>500：登陆成功</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>501：用户名尚未注册</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>502：用户名和密码不正确</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>503：发生未知错误</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>（2）注册</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>POST</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/user/{username}/{password}</p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2" width="283">
+                <p>返回码</p>
+            </td>
+            <td width="283">
+                <p>600：注册成功</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>601：用户名已被占用</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>（3）添加收藏</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>POST</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/savenews/{username}/{news_id}</p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2" width="283">
+                <p>返回码</p>
+            </td>
+            <td width="283">
+                <p>700：收藏成功</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>701：该新闻已收藏</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>（4）取消收藏</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>DELETE</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/savenews/{username}/{news_id}</p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2" width="283">
+                <p>返回码</p>
+            </td>
+            <td width="283">
+                <p>800：已取消</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>801：该用户未收藏该新闻</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>（5）添加访问历史记录</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>POST</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/userhis/{username}/{news_id}</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>返回码</p>
+            </td>
+            <td width="283">
+                <p>不设置返回码</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h3><a name="_Toc9536862"></a><a name="_Toc9425698"></a>&nbsp; 新闻列表相关API接口</h3>
+    <p>（1）获取某频道某页的所有新闻数据（默认一页10篇新闻）</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>GET</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/newslist/{channelname}/page=?{idx }</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>返回值</p>
+            </td>
+            <td width="283">
+                <p>带有该页所有新闻的JSON格式数据</p>
+            </td>
+        </tr>
+        </tbody>
+    </table >
+    <p>（2）获取某条新闻的内容详情</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>GET</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/detail/{channelname}/{news_id}</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>返回值</p>
+            </td>
+            <td width="283">
+                <p>带有该新闻详细内容的JSON格式数据</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>（3）获取某用户收藏的所有新闻列表</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>GET</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/savedlist/{username}</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>返回值</p>
+            </td>
+            <td width="283">
+                <p>带有该用户收藏的所有新闻的JSON格式数据</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>（1）获取某用户访问过的所有新闻列表</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>GET</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/viewlist/{username}</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>返回值</p>
+            </td>
+            <td width="283">
+                <p>带有该用户访问过的所有新闻的JSON格式数据</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h3><a name="_Toc9536863"></a><a name="_Toc9425699"></a>&nbsp; 新闻推荐相关API接口</h3>
+    <p>（1）为未登录用户随机推荐新闻</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>GET</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/rcmrandom/</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>返回值</p>
+            </td>
+            <td width="283">
+                <p>带有推荐结果新闻列表的JSON格式数据</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>（2）为已登录用户个性化推荐新闻</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>GET</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/rcm/{username}</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>返回值</p>
+            </td>
+            <td width="283">
+                <p>带有推荐结果新闻列表的JSON格式数据</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>（3）根据一条新闻的ID推荐与之相似的新闻</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td width="283">
+                <p>方法</p>
+            </td>
+            <td width="283">
+                <p>GET</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>URL</p>
+            </td>
+            <td width="283">
+                <p>/rcdid/{channelname}/{news_id}</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="283">
+                <p>返回值</p>
+            </td>
+            <td width="283">
+                <p>带有推荐结果新闻列表的JSON格式数据</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>&nbsp;</p>
 
 
 {% endblock %}

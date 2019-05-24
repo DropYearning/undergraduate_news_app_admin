@@ -32,7 +32,7 @@ class JsonResponse(HttpResponse):
         super(JsonResponse, self).__init__(content, **kwargs)
 
 
-# 用户的注册和登录
+# 用户的注册和登录API
 @api_view(['GET', 'POST'])
 def user_admin(request, username, password):
     if request.method == 'GET':
@@ -58,7 +58,7 @@ def user_admin(request, username, password):
             return Response({'info': '注册成功!', 'code': '600'})
 
 
-# 根据频道名和新闻ID请求新闻详情
+# 根据频道名和新闻ID请求新闻详情API
 @api_view(['GET'])
 def news_detail(request, channel, id):
     # python没有switch语句 只有用这么多if/else了
@@ -100,7 +100,7 @@ def news_detail(request, channel, id):
 
 
 
-# 随机从今天收录的新闻中推荐若干条
+# 随机从今天收录的新闻中推荐若干条API
 @api_view(['GET'])
 def news_recommend_random(request):
     # 设置推荐几条新闻
@@ -132,7 +132,7 @@ def news_recommend_random(request):
 
 
 
-# 根据频道名和新闻ID请求若干偏与之相似的推荐的新闻
+# 根据频道名和新闻ID请求若干偏与之相似的推荐的新闻API
 @api_view(['GET'])
 def news_recommend_by_id(request, channel, id):
     # 设置推荐几条新闻
@@ -389,7 +389,7 @@ class MyPagination(PageNumberPagination):
     page_query_param = "page"
 
 
-# 一下的14个类用于对14个频道列表进行分页的请求
+# 一下的14个类用于对14个频道列表进行分页的请求API
 class EduNewsListSet(viewsets.ModelViewSet):
     # 指定结果集并设置排序
     queryset = m1.NewsEdu.objects.all().order_by('-savetime')
