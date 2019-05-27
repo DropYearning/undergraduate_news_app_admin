@@ -26,10 +26,19 @@ admin.autodiscover()
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
+
+    # Xadmin后台管理页面
     path('xadmin/', xadmin.site.urls),
-    path('user/<str:username>/<str:password>', user_admin),
-    path('detail/<str:channel>/<str:id>/', news_detail),
-    path('recommendbyid/<str:channel>/<str:id>/', news_recommend_by_id),
-    path('recommendrandom/', news_recommend_random),
+    # 新闻列表API(RESTful_framework)
     path('', include('apiApp.urls')),    # 从apiApp.urls中导入的路由
+    # 注册登录API
+    path('user/<str:username>/<str:password>', user_admin),
+    # 新闻详情API
+    path('detail/<str:channel>/<str:id>/', news_detail),
+    # 按新闻ID推荐API
+    path('rcm4news/<str:channel>/<str:id>/', news_recommend_by_id),
+    # 随机推荐API
+    path('rcm4random/', news_recommend_random),
+
+
 ]
