@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from apiApp.views import news_detail
+from apiApp.views import get_news_detail
 from apiApp.views import user_admin
-from apiApp.views import news_recommend_by_id
-from apiApp.views import news_recommend_random
-
+from apiApp.views import get_recommend_by_id
+from apiApp.views import get_recommend_random
+from apiApp.views import save_admin
+from apiApp.views import history_admin
+from apiApp.views import get_user_savelist
+from apiApp.views import get_user_hisrotylist
 import xadmin
 
 admin.autodiscover()
@@ -33,12 +36,20 @@ urlpatterns = [
     path('', include('apiApp.urls')),    # 从apiApp.urls中导入的路由
     # 注册登录API
     path('user/<str:username>/<str:password>', user_admin),
+    # 添加收藏/取消收藏API
+    path('save/<str:username>/<str:news_channelname>/<str:news_id>', save_admin),
+    # 添加访问记录/删除 API
+    path('history/<str:username>/<str:news_channelname>/<str:news_id>', history_admin),
     # 新闻详情API
-    path('detail/<str:channel>/<str:id>/', news_detail),
+    path('detail/<str:channel>/<str:id>/', get_news_detail),
+    # 获取用户收藏列表
+    path('savelist/<str:username>', get_user_savelist),
+    # 获取用户访问历史列表
+    path('historylist/<str:username>', get_user_hisrotylist),
     # 按新闻ID推荐API
-    path('rcm4news/<str:channel>/<str:id>/', news_recommend_by_id),
+    path('rcm4news/<str:channel>/<str:id>/', get_recommend_by_id),
     # 随机推荐API
-    path('rcm4random/', news_recommend_random),
+    path('rcm4random/', get_recommend_random),
 
 
 ]

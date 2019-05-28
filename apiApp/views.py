@@ -14,6 +14,8 @@ from rest_framework.parsers import JSONParser
 from .serializers import UserSerializers
 from .serializers import NewsDetailSerializers
 from .serializers import NewsListSerializers
+from .serializers import HistoryListSerializers
+from .serializers import SaveListSerializers
 import uuid
 import time
 import random
@@ -46,7 +48,7 @@ def user_admin(request, username, password):
             return Response({'info': '登陆成功!', 'code': '500'})
         elif len(user_byname) > 1:
             return Response({'info': '登录失败:未知错误,请查看后台数据', 'code': '503'})
-    if request.method == 'POST':
+    elif request.method == 'POST':
         # 先判断用户名是否被占用
         user_byname = m2.UserInfo.objects.filter(username=username)
         if len(user_byname)>= 1:
@@ -58,9 +60,156 @@ def user_admin(request, username, password):
             return Response({'info': '注册成功!', 'code': '600'})
 
 
+# 添加用户收藏和取消收藏API
+@api_view(['DELETE', 'POST'])
+def save_admin(request, username, news_channelname, news_id):
+    # 添加收藏
+    if request.method == 'POST':
+        if (news_channelname == 'edu'):
+            news = m1.NewsEdu.objects.filter(id=news_id)
+        elif (news_channelname == 'domestic'):
+            news = m1.NewsDomestic.objects.filter(id=news_id)
+        elif (news_channelname == 'finance'):
+            news = m1.NewsFinance.objects.filter(id=news_id)
+        elif (news_channelname == 'internet'):
+            news = m1.NewsInternet.objects.filter(id=news_id)
+        elif (news_channelname == 'estate'):
+            news = m1.NewsEstate.objects.filter(id=news_id)
+        elif (news_channelname == 'car'):
+            news = m1.NewsCar.objects.filter(id=news_id)
+        elif (news_channelname == 'sport'):
+            news = m1.NewsSport.objects.filter(id=news_id)
+        elif (news_channelname == 'game'):
+            news = m1.NewsGame.objects.filter(id=news_id)
+        elif (news_channelname == 'tech'):
+            news = m1.NewsTech.objects.filter(id=news_id)
+        elif (news_channelname == 'entertainment'):
+            news = m1.NewsEntertainment.objects.filter(id=news_id)
+        elif (news_channelname == 'military'):
+            news = m1.NewsMilitary.objects.filter(id=news_id)
+        elif (news_channelname == 'digit'):
+            news = m1.NewsDigit.objects.filter(id=news_id)
+        elif (news_channelname == 'society'):
+            news = m1.NewsSociety.objects.filter(id=news_id)
+        elif (news_channelname == 'international'):
+            news = m1.NewsInternational.objects.filter(id=news_id)
+        if (len(news) == 0):
+            return Response({'info': '该频道没有这条新闻', 'code': '895'})
+        user = m2.UserInfo.objects.filter(username=username)
+        nowtime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+        checkExist = m2.UserSavelist.objects.filter(news_id=news_id, username=username)
+        # 假如该用户没有收藏过该新闻
+        if(len(checkExist) == 0):
+            m2.UserSavelist.objects.create(username=user[0].username, uuid=user[0].uuid,
+                                       news_id=news[0].id, news_channel=news_channelname,
+                                        news_title=news[0].title, news_keywords=news[0].keywords,
+                                       savetime=nowtime)
+            return Response({'info': '收藏成功', 'code': '700'})
+        elif(len(checkExist) == 1):
+            return Response({'info': '已收藏过', 'code': '798'})
+        return Response({'info': '收藏失败', 'code': '799'})
+    # 取消收藏
+    elif request.method == 'DELETE':
+        checkExist = m2.UserSavelist.objects.filter(news_id=news_id, username=username)
+        # 如果没有该条记录
+        if(len(checkExist) == 0):
+            return Response({'info': '尚未收藏本新闻', 'code': '796'})
+        elif(len(checkExist) == 1):
+            checkExist.delete()
+            return Response({'info': '取消成功', 'code': '701'})
+        return Response({'info': '取消收藏失败', 'code': '797'})
+
+
+# 添加用户历史(删除历史)
+@api_view(['DELETE', 'POST'])
+def history_admin(request, username, news_channelname, news_id):
+    # 添加历史
+    if request.method == 'POST':
+        if (news_channelname == 'edu'):
+            news = m1.NewsEdu.objects.filter(id=news_id)
+        elif (news_channelname == 'domestic'):
+            news = m1.NewsDomestic.objects.filter(id=news_id)
+        elif (news_channelname == 'finance'):
+            news = m1.NewsFinance.objects.filter(id=news_id)
+        elif (news_channelname == 'internet'):
+            news = m1.NewsInternet.objects.filter(id=news_id)
+        elif (news_channelname == 'estate'):
+            news = m1.NewsEstate.objects.filter(id=news_id)
+        elif (news_channelname == 'car'):
+            news = m1.NewsCar.objects.filter(id=news_id)
+        elif (news_channelname == 'sport'):
+            news = m1.NewsSport.objects.filter(id=news_id)
+        elif (news_channelname == 'game'):
+            news = m1.NewsGame.objects.filter(id=news_id)
+        elif (news_channelname == 'tech'):
+            news = m1.NewsTech.objects.filter(id=news_id)
+        elif (news_channelname == 'entertainment'):
+            news = m1.NewsEntertainment.objects.filter(id=news_id)
+        elif (news_channelname == 'military'):
+            news = m1.NewsMilitary.objects.filter(id=news_id)
+        elif (news_channelname == 'digit'):
+            news = m1.NewsDigit.objects.filter(id=news_id)
+        elif (news_channelname == 'society'):
+            news = m1.NewsSociety.objects.filter(id=news_id)
+        elif (news_channelname == 'international'):
+            news = m1.NewsInternational.objects.filter(id=news_id)
+        if(len(news) == 0):
+            return Response({'info': '该频道没有这条新闻', 'code': '895'})
+        user = m2.UserHistorylist.objects.filter(username=username)
+        nowtime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+        checkExist = m2.UserHistorylist.objects.filter(news_id=news_id, username=username)
+        # 假如该用户没有访问过该新闻
+        if(len(checkExist) == 0):
+            m2.UserHistorylist.objects.create(username=user[0].username, uuid=user[0].uuid,
+                                       news_id=news[0].id, news_channel=news_channelname,
+                                        news_title=news[0].title, news_keywords=news[0].keywords,
+                                       savetime=nowtime)
+            return Response({'info': '记录成功', 'code': '800'})
+        # 如果已经访问过该条新闻,则更新访问时间戳
+        elif(len(checkExist) == 1):
+            checkExist.delete()
+            m2.UserHistorylist.objects.create(username=user[0].username, uuid=user[0].uuid,
+                                              news_id=news[0].id, news_channel=news_channelname,
+                                              news_title=news[0].title, news_keywords=news[0].keywords,
+                                              savetime=nowtime)
+            return Response({'info': '更新记录', 'code': '898'})
+        return Response({'info': '收藏失败', 'code': '899'})
+
+    # 删除历史
+    elif request.method == 'DELETE':
+        checkExist = m2.UserHistorylist.objects.filter(news_id=news_id, username=username)
+        # 如果没有该条记录
+        if(len(checkExist) == 0):
+            return Response({'info': '没有这条记录', 'code': '896'})
+        elif(len(checkExist) == 1):
+            checkExist.delete()
+            return Response({'info': '删除记录成功', 'code': '801'})
+        return Response({'info': '删除记录失败', 'code': '897'})
+
+# 获取用户收藏列表
+@api_view(['GET'])
+def get_user_savelist(request, username):
+    if request.method == 'GET':
+        savedNews = m2.UserSavelist.objects.filter(username=username)
+        result_serializer = SaveListSerializers(savedNews, many=True)
+        return Response(result_serializer.data)
+    return Response({'info': '获取收藏列表失败', 'code': '699'})
+
+
+# 获取用户访问历史列表
+@api_view(['GET'])
+def get_user_hisrotylist(request, username):
+    if request.method == 'GET':
+        savedNews = m2.UserHistorylist.objects.filter(username=username)
+        result_serializer = HistoryListSerializers(savedNews, many=True)
+        return Response(result_serializer.data)
+    return Response({'info': '获取访问历史列表失败', 'code': '698'})
+
+
+
 # 根据频道名和新闻ID请求新闻详情API
 @api_view(['GET'])
-def news_detail(request, channel, id):
+def get_news_detail(request, channel, id):
     # python没有switch语句 只有用这么多if/else了
     if(channel =='edu'):
         news = m1.NewsEdu.objects.filter(id=id)
@@ -98,11 +247,9 @@ def news_detail(request, channel, id):
         return Response(news_serializer.data)
 
 
-
-
 # 随机从今天收录的新闻中推荐若干条API
 @api_view(['GET'])
-def news_recommend_random(request):
+def get_recommend_random(request):
     # 设置推荐几条新闻
     para_news_count = 3
     year = time.strftime('%Y', time.localtime(time.time()))
@@ -134,7 +281,7 @@ def news_recommend_random(request):
 
 # 根据频道名和新闻ID请求若干偏与之相似的推荐的新闻API
 @api_view(['GET'])
-def news_recommend_by_id(request, channel, id):
+def get_recommend_by_id(request, channel, id):
     # 设置推荐几条新闻
     para_news_count = 3
     # 判断是来自哪个频道的请求
