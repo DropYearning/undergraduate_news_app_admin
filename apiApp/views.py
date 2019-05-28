@@ -34,6 +34,25 @@ class JsonResponse(HttpResponse):
         super(JsonResponse, self).__init__(content, **kwargs)
 
 
+# 频道英文名到中文名的映射
+channelNameToCNS = {
+  'domestic': '国内',
+  'international': '国际',
+  'finance': '财经',
+  'entertainment': '娱乐',
+  'car': '汽车',
+  'military': '军事',
+  'society': '社会',
+  'sport': '体育',
+  'edu': '教育',
+  'digit': '数码',
+  'game': '游戏',
+  'tech': '科技',
+  'internet': '互联网',
+  'estate': '房地产',
+}
+
+
 # 用户的注册和登录API
 @api_view(['GET', 'POST'])
 def user_admin(request, username, password):
@@ -101,7 +120,7 @@ def save_admin(request, username, news_channelname, news_id):
         # 假如该用户没有收藏过该新闻
         if(len(checkExist) == 0):
             m2.UserSavelist.objects.create(username=user[0].username, uuid=user[0].uuid,
-                                       news_id=news[0].id, news_channel=news_channelname,
+                                       news_id=news[0].id, news_channel=channelNameToCNS[news_channelname],
                                         news_title=news[0].title, news_keywords=news[0].keywords,
                                        savetime=nowtime)
             return Response({'info': '收藏成功', 'code': '700'})
@@ -155,13 +174,13 @@ def history_admin(request, username, news_channelname, news_id):
             news = m1.NewsInternational.objects.filter(id=news_id)
         if(len(news) == 0):
             return Response({'info': '该频道没有这条新闻', 'code': '895'})
-        user = m2.UserHistorylist.objects.filter(username=username)
+        user = m2.UserInfo.objects.filter(username=username)
         nowtime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
         checkExist = m2.UserHistorylist.objects.filter(news_id=news_id, username=username)
         # 假如该用户没有访问过该新闻
         if(len(checkExist) == 0):
             m2.UserHistorylist.objects.create(username=user[0].username, uuid=user[0].uuid,
-                                       news_id=news[0].id, news_channel=news_channelname,
+                                       news_id=news[0].id, news_channel=channelNameToCNS[news_channelname],
                                         news_title=news[0].title, news_keywords=news[0].keywords,
                                        savetime=nowtime)
             return Response({'info': '记录成功', 'code': '800'})
@@ -169,7 +188,7 @@ def history_admin(request, username, news_channelname, news_id):
         elif(len(checkExist) == 1):
             checkExist.delete()
             m2.UserHistorylist.objects.create(username=user[0].username, uuid=user[0].uuid,
-                                              news_id=news[0].id, news_channel=news_channelname,
+                                              news_id=news[0].id, news_channel=channelNameToCNS[news_channelname],
                                               news_title=news[0].title, news_keywords=news[0].keywords,
                                               savetime=nowtime)
             return Response({'info': '更新记录', 'code': '898'})
@@ -198,7 +217,7 @@ def get_user_savelist(request, username):
 
 # 获取用户访问历史列表
 @api_view(['GET'])
-def get_user_hisrotylist(request, username):
+def get_user_historylist(request, username):
     if request.method == 'GET':
         savedNews = m2.UserHistorylist.objects.filter(username=username)
         result_serializer = HistoryListSerializers(savedNews, many=True)
