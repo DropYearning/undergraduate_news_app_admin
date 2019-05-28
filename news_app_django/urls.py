@@ -22,7 +22,7 @@ from apiApp.views import get_recommend_random
 from apiApp.views import save_admin
 from apiApp.views import history_admin
 from apiApp.views import get_user_savelist
-from apiApp.views import get_user_hisrotylist
+from apiApp.views import get_user_historylist
 import xadmin
 
 admin.autodiscover()
@@ -45,7 +45,7 @@ urlpatterns = [
     # 获取用户收藏列表
     path('savelist/<str:username>', get_user_savelist),
     # 获取用户访问历史列表
-    path('historylist/<str:username>', get_user_hisrotylist),
+    path('historylist/<str:username>', get_user_historylist),
     # 按新闻ID推荐API
     path('rcm4news/<str:channel>/<str:id>/', get_recommend_by_id),
     # 随机推荐API

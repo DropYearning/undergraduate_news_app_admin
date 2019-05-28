@@ -209,7 +209,7 @@ def history_admin(request, username, news_channelname, news_id):
 @api_view(['GET'])
 def get_user_savelist(request, username):
     if request.method == 'GET':
-        savedNews = m2.UserSavelist.objects.filter(username=username)
+        savedNews = m2.UserSavelist.objects.filter(username=username).order_by('-savetime')
         result_serializer = SaveListSerializers(savedNews, many=True)
         return Response(result_serializer.data)
     return Response({'info': '获取收藏列表失败', 'code': '699'})
@@ -219,7 +219,7 @@ def get_user_savelist(request, username):
 @api_view(['GET'])
 def get_user_historylist(request, username):
     if request.method == 'GET':
-        savedNews = m2.UserHistorylist.objects.filter(username=username)
+        savedNews = m2.UserHistorylist.objects.filter(username=username).order_by('-savetime')
         result_serializer = HistoryListSerializers(savedNews, many=True)
         return Response(result_serializer.data)
     return Response({'info': '获取访问历史列表失败', 'code': '698'})
