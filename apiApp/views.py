@@ -196,6 +196,10 @@ def history_admin(request, username, news_channelname, news_id):
 
     # 删除历史
     elif request.method == 'DELETE':
+        if(news_channelname == 'clear' and news_id =='all'):
+            userHistory =  m2.UserHistorylist.objects.filter(username=username)
+            userHistory.delete()
+            return Response({'info': '清除所有记录成功', 'code': '802'})
         checkExist = m2.UserHistorylist.objects.filter(news_id=news_id, username=username)
         # 如果没有该条记录
         if(len(checkExist) == 0):
@@ -204,6 +208,19 @@ def history_admin(request, username, news_channelname, news_id):
             checkExist.delete()
             return Response({'info': '删除记录成功', 'code': '801'})
         return Response({'info': '删除记录失败', 'code': '897'})
+
+
+# 检查用户是否收藏了某条新闻
+@api_view(['GET'])
+def check_savelist(request, username, news_id):
+    if request.method == 'GET':
+        checkExist = m2.UserSavelist.objects.filter(news_id=news_id, username=username)
+        if(len(checkExist) ==0):
+            return Response({'info': '未收藏', 'code': '889'})
+        else:
+            return Response({'info': '已收藏', 'code': '888'})
+
+
 
 # 获取用户收藏列表
 @api_view(['GET'])
@@ -295,7 +312,6 @@ def get_recommend_random(request):
             return Response({'info': '找不到这样的新闻', 'code': '599'})
         result_serializer = NewsListSerializers(result, many=True)
         return Response(result_serializer.data)
-
 
 
 # 根据频道名和新闻ID请求若干偏与之相似的推荐的新闻API

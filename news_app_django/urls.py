@@ -23,19 +23,21 @@ from apiApp.views import save_admin
 from apiApp.views import history_admin
 from apiApp.views import get_user_savelist
 from apiApp.views import get_user_historylist
+from apiApp.views import check_savelist
 import xadmin
 
 admin.autodiscover()
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-
     # Xadmin后台管理页面
     path('xadmin/', xadmin.site.urls),
     # 新闻列表API(RESTful_framework)
     path('', include('apiApp.urls')),    # 从apiApp.urls中导入的路由
     # 注册登录API
     path('user/<str:username>/<str:password>', user_admin),
+    # 查询用户是否收藏过某条新闻
+    path('checksave/<str:username>/<str:news_id>', check_savelist),
     # 添加收藏/取消收藏API
     path('save/<str:username>/<str:news_channelname>/<str:news_id>', save_admin),
     # 添加访问记录/删除 API
@@ -48,8 +50,8 @@ urlpatterns = [
     path('historylist/<str:username>', get_user_historylist),
     # 按新闻ID推荐API
     path('rcm4news/<str:channel>/<str:id>/', get_recommend_by_id),
-    # 随机推荐API
-    path('rcm4random/', get_recommend_random),
-
-
+    # 随机推荐3篇新闻API
+    path('rcm4random3/', get_recommend_random),
+    # 随机推荐10篇新闻(作为初始推荐列表)API
+    path('rcm4random10/', get_recommend_random),
 ]
