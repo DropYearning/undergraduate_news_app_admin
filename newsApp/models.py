@@ -355,3 +355,4 @@ class NewsLog(models.Model):
     class Meta:
         managed = False
         db_table = 'news_log'
+        verbose_name_plural = '更新日志'

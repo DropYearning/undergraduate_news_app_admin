@@ -1,39 +1,43 @@
-{% extends 'xadmin/base_site.html' %}
+<!-- 必须先基础xadmin基础模板 -->
+{% extends 'base_site.html' %}
 
 
 {% block content %}
-    <!-- 首页小组件代码 -->
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="hero-unit">
-                    <h1>
-                        基于Android的新闻推荐客户端
-                    </h1>
-                    <h1>
-                        （Web管理后台部分）
-                    </h1>
-                    <p>
-                        <strong>姓名：周亮</strong>
-                    </p>
-                    <p>
-                        <strong>班级：15052313</strong>
-                    </p>
-                    <p>
-                        <strong>学号：15051349</strong>
-                    </p>
-                    <p>
-                        <strong>指导教师： 陈佰平</strong>
-                    </p>
-                    </br>
+    {{ carNewsCount }} <br />
+    {{ digitNewsCount }}<br />
+    {{ domesticNewsCount }}<br />
+    {{ eduNewsCount }}<br />
+    {{ entertainmentNewsCount }}<br />
+    {{ estateNewsCount }}<br />
+    {{ financeNewsCount }}<br />
+    {{ gameNewsCount }}<br />
+    {{ internationalNewsCount }}<br />
+    {{ internetNewsCount }}<br />
+    {{ militaryNewsCount }}<br />
+    {{ societyNewsCount }}<br />
+    {{ sportNewsCount }}<br />
+    {{ techNewsCount }}<br />
+    {{ allNewsCount }}<br />
 
-                    <p>
-                        基于开源Django管理框架<a href="https://github.com/sshwsfc/xadmin">Xadmin</a>实现
-                    </p>
+    {{ lastUpdateTime }}<br />
+    {{ nextUpdateTime }}<br />
+
+    {{ carUpdateCount }}<br />
+    {{ digitUpdateCount }}<br />
+    {{ domesticUpdateCount }}<br />
+    {{ eduUpdateCount }}<br />
+    {{ entertainmentUpdateCount }}<br />
+    {{ estateUpdateCount }}<br />
+    {{ financeUpdateCount }}<br />
+    {{ gameUpdateCount }}<br />
+    {{ internationalUpdateCount }}<br />
+    {{ internetUpdateCount }}<br />
+    {{ militaryUpdateCount }}<br />
+    {{ societyUpdateCount }}<br />
+    {{ sportUpdateCount }}<br />
+    {{ techUpdateCount }}<br />
+    {{ allUpdateCount }}<br />
 
 
-                </div>
-            </div>
-        </div>
-    </div>
+
 {% endblock %}

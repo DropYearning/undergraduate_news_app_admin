@@ -8,12 +8,12 @@
 ## 截图
 
 #### 首页
-![](https://pic-1253509712.cos.ap-shanghai.myqcloud.com/20190513113613.png)
+![](https://pic-1253509712.cos.ap-shanghai.myqcloud.com/20190531155352.png)
 #### 统计页 
-![](https://pic-1253509712.cos.ap-shanghai.myqcloud.com/20190513113858.png)
-
+![](https://pic-1253509712.cos.ap-shanghai.myqcloud.com/20190531155355.png)
 #### 新闻列表页
-![](https://pic-1253509712.cos.ap-shanghai.myqcloud.com/20190513113646.png)
+![](https://pic-1253509712.cos.ap-shanghai.myqcloud.com/20190531155358.png)
+
 
 ## 待增加功能
 - [x] 定制首页, 显示入库新闻统计
@@ -27,6 +27,6 @@
 
 ## 待改进的地方
 - [ ] 请求API时使用异步多线程
-- [ ] 采集函数改为使用mysqlclient库提升性能
+- [ ] 优化分析页性能
 
  

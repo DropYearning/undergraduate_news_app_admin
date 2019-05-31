@@ -24,6 +24,7 @@ from apiApp.views import history_admin
 from apiApp.views import get_user_savelist
 from apiApp.views import get_user_historylist
 from apiApp.views import check_savelist
+from apiApp.views import get_random_list
 import xadmin
 
 admin.autodiscover()
@@ -53,5 +54,5 @@ urlpatterns = [
     # 随机推荐3篇新闻API
     path('rcm4random3/', get_recommend_random),
     # 随机推荐10篇新闻(作为初始推荐列表)API
-    path('rcm4random10/', get_recommend_random),
+    path('rcm4random10/', get_random_list),
 ]

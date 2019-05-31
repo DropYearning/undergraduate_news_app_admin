@@ -19,6 +19,7 @@ from .serializers import SaveListSerializers
 import uuid
 import time
 import random
+from random import randint, sample
 
 # 这个库非常强大 可以实现QuerySet的合并
 from itertools import chain
@@ -295,9 +296,6 @@ def get_recommend_random(request):
     news_domestic = m1.NewsDomestic.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
     news_international = m1.NewsInternational.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
 
-    # news_car = m1.NewsCar.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
-    # news_edu = m1.NewsEdu.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
-
     int1 = random.randint(1, para_news_count-1)
     int2 = para_news_count - int1
     r1 = news_domestic.order_by('?')[:int1]
@@ -310,6 +308,29 @@ def get_recommend_random(request):
     if request.method == 'GET':
         if(len(result) <= 0):
             return Response({'info': '找不到这样的新闻', 'code': '599'})
+        result_serializer = NewsListSerializers(result, many=True)
+        return Response(result_serializer.data)
+
+
+# 随机从今天收录的新闻中取出10条作为初始列表
+@api_view(['GET'])
+def get_random_list(request):
+    para_news_count = 10
+    if request.method == 'GET':
+        year = time.strftime('%Y', time.localtime(time.time()))
+        month = time.strftime('%m', time.localtime(time.time()))
+        day = time.strftime('%d', time.localtime(time.time()))
+        # 为了减少数据库检索压力,只从国内和国际两个范围最广的频道随机选出para_news_count篇文章推荐
+        news_domestic = m1.NewsDomestic.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
+        news_international = m1.NewsInternational.objects.filter(savetime__year=year, savetime__month=month,
+                                                                 savetime__day=day)
+        int_domestic = random.randint(6, para_news_count - 1)
+        int_internatinla = para_news_count - int_domestic
+        r1 = news_domestic.order_by('?')[:int_domestic]
+        r2 = news_international.order_by('?')[:int_internatinla]
+        result = r1.union(r2)
+        # if (len(result) <= 0):
+        #     return Response({'info': '找不到这样的新闻', 'code': '599'})
         result_serializer = NewsListSerializers(result, many=True)
         return Response(result_serializer.data)
 

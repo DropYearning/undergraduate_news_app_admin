@@ -7,6 +7,9 @@
           <mappings>
             <mapping deploy="/news_app_django" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/envxadmin" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

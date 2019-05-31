@@ -31,7 +31,7 @@ class GlobalSetting(object):
                 'url': 'http://111.231.57.151:8000/xadmin/analysis',
             },
             {
-                # 这是自行添加的菜单项"统计"
+                # 这是自行添加的菜单项"API"
                 'title': 'API',
                 'icon': 'fa fa-plug',
                 'url': 'http://111.231.57.151:8000/xadmin/interface',
@@ -46,15 +46,16 @@ class GlobalSetting(object):
     menu_style = "accordion"
 
 
-# 从你的app的view里引入你将要写的view，你也可以另外写一个py文件，把后台的view集中在一起方便管理
 from .views import AnalysisView
 from .views import UpdateView
 from .views import ApiInfoView
+from .views import AnalysisView_rebuild
 
 # 注册自定义view (路由, 类名)
-xadmin.site.register_view('analysis/', AnalysisView, name='analysis')
-xadmin.site.register_view('fetch/', UpdateView, name='fetch')  # 若注册Url为"update"会出现与xadmin数据更新view冲突的问题
-xadmin.site.register_view('interface/', ApiInfoView, name='interface')
+xadmin.site.register_view('analysis/', AnalysisView_rebuild, name='analysis')  # 分析页注册
+xadmin.site.register_view('fetch/', UpdateView, name='fetch')  # 更新页注册,若注册Url为"update"会出现与xadmin数据更新view冲突的问题
+xadmin.site.register_view('interface/', ApiInfoView, name='interface')  # API信息页注册
+xadmin.site.register_view('test/', AnalysisView_rebuild, name='test')  # 测试页面
 
 
 
@@ -77,7 +78,7 @@ class NewsCarAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-bars'  # 自定义图标,来源:fontawesome
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -88,7 +89,7 @@ class NewsDigitAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-desktop'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -99,7 +100,7 @@ class NewsDomesticAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-flag'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -110,7 +111,7 @@ class NewsEduAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-book'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -121,7 +122,7 @@ class NewsEstateAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-home'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -132,7 +133,7 @@ class NewsEntertainmentAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-film'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -143,7 +144,7 @@ class NewsFinanceAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-usd'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -154,7 +155,7 @@ class NewsGameAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-gamepad'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -165,7 +166,7 @@ class NewsInternationalAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-globe'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -176,7 +177,7 @@ class NewsInternetAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-cloud'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -187,7 +188,7 @@ class NewsMilitaryAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-fighter-jet'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -198,7 +199,7 @@ class NewsSocietyAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-users'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -209,7 +210,7 @@ class NewsSportAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-trophy'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
@@ -220,7 +221,7 @@ class NewsTechAdmin(object):
     list_display = ('title', 'source', 'savetime', 'pubtime', 'link', 'havepic', 'keywords')  # 自定义表在后台的显示列
     ordering = ('-savetime',)  # 排序（这里以日期排序，加‘-’表示降序）
     # readonly_fields = ['id', 'channelname']  # 只读列
-    exclude = ['html']  # 在编辑页面隐藏的字段
+    # exclude = ['html']  # 在编辑页面隐藏的字段
     model_icon = 'fa fa-flask'
     # list_display_links = ['link']  # 设置link字段为超链接
     search_fields = ['title', 'keywords']  # 设置title为可搜索字段
