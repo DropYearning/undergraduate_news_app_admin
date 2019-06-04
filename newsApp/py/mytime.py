@@ -49,8 +49,12 @@ def next_5_minute():
     # 转换为int
     int_minute = int(minute)
 
-    next_5_m = time + timedelta(minutes=5) - timedelta(minutes=int_minute)
-    next_5_m = (next_5_m.strftime('%Y年%m月%d日 %H:%M'))
+    if (int_minute >= 5):
+        next_5_m = time + timedelta(minutes=5) - timedelta(minutes=(int_minute - 5))
+        next_5_m = (next_5_m.strftime('%Y年%m月%d日 %H:%M'))
+    else:
+        next_5_m = time + timedelta(minutes=5) - timedelta(minutes=int_minute)
+        next_5_m = (next_5_m.strftime('%Y年%m月%d日 %H:%M'))
 
     # print(type(formatTime))
     # print(formatTime)

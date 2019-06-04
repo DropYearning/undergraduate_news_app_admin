@@ -334,9 +334,9 @@ class NewsTech(models.Model):
 
 # 日志
 class NewsLog(models.Model):
-    updatetime = models.DateTimeField(blank=True, null=True)
-    usedtime = models.CharField(max_length=32, blank=True, null=True)
-    all_count = models.IntegerField(blank=True, null=True)
+    updatetime = models.DateTimeField(blank=True, null=True, verbose_name="更新时间")
+    usedtime = models.CharField(max_length=32, blank=True, null=True, verbose_name="花费时间")
+    all_count = models.IntegerField(blank=True, null=True, verbose_name="更新数目")
     car_count = models.IntegerField(blank=True, null=True)
     digit_count = models.IntegerField(blank=True, null=True)
     demostic_count = models.IntegerField(blank=True, null=True)

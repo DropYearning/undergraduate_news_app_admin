@@ -93,8 +93,11 @@ class AnalysisView(CommAdminView):
 
         # 获取最后一次更新时间
         lastUpdateTime = models.NewsLog.objects.latest('updatetime').updatetime
-        # 获取下一次更新时间
-        nextUpdateTime = mytime.get_next_hour()
+
+        # # 获取下一次更新时间(下一小时)
+        # nextUpdateTime = mytime.get_next_hour()
+        nextUpdateTime = mytime.next_5_minute()
+
         # 注入context
         context['lastUpdateTime'] = lastUpdateTime
         context['nextUpdateTime'] = nextUpdateTime
@@ -198,8 +201,11 @@ class AnalysisView_rebuild(CommAdminView):
 
         # 获取最后一次更新时间
         lastUpdateTime = models.NewsLog.objects.latest('updatetime').updatetime
-        # 获取下一次更新时间
-        nextUpdateTime = mytime.get_next_hour()
+
+        # # 获取下一次更新时间(下一小时)
+        # nextUpdateTime = mytime.get_next_hour()
+        nextUpdateTime = mytime.next_5_minute()
+
         # 注入context到analysis.html中
         context['lastUpdateTime'] = lastUpdateTime
         context['nextUpdateTime'] = nextUpdateTime
@@ -306,8 +312,10 @@ class UpdateView(CommAdminView):
         lastUpdateTime = models.NewsLog.objects.latest('updatetime').updatetime
         # 获取本次更新数量
         lastUpdateCount = models.NewsLog.objects.latest('updatetime').all_count
-        # 获取下一次更新时间
-        nextUpdateTime = mytime.get_next_hour()
+        # # 获取下一次更新时间(下一小时)
+        # nextUpdateTime = mytime.get_next_hour()
+        nextUpdateTime = mytime.next_5_minute()
+
         # 注入context
         context['lastUpdateTime'] = lastUpdateTime
         context['lastUpdateCount'] = lastUpdateCount

@@ -229,7 +229,11 @@ class NewsTechAdmin(object):
 
 
 class NewsLogAdmin(object):
-    hidden_menu = True  # 设置不显示此模块菜单
+    # hidden_menu = True  # 设置不显示此模块菜单
+    model_icon = 'fa fa-history'
+    list_display = ('updatetime', 'usedtime', 'all_count')  # 自定义表在后台的显示列
+    ordering = ('-updatetime',)  # 排序（这里以日期排序，加‘-’表示降序）
+
 
 
 # 注册模型

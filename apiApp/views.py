@@ -284,7 +284,7 @@ def get_news_detail(request, channel, id):
         return Response(news_serializer.data)
 
 
-# 随机从今天收录的新闻中推荐若干条API
+# 随机从今天收录的新闻中随机推荐3条
 @api_view(['GET'])
 def get_recommend_random(request):
     # 设置推荐几条新闻
@@ -577,6 +577,33 @@ def get_recommend_by_id(request, channel, id):
 
 
 
+
+# 根据用户ID个性化推荐API
+@api_view(['GET'])
+def get_recommend_by_user(request, username):
+    # 设置推荐几条新闻
+    para_news_count = 3
+    year = time.strftime('%Y', time.localtime(time.time()))
+    month = time.strftime('%m', time.localtime(time.time()))
+    day = time.strftime('%d', time.localtime(time.time()))
+    # 为了减少数据库检索压力,只从国内和国际两个范围最广的频道随机选出para_news_count篇文章推荐
+    news_domestic = m1.NewsDomestic.objects.filter(savetime__year=year, savetime__month=month, savetime__day=day)
+    news_international = m1.NewsInternational.objects.filter(savetime__year=year, savetime__month=month,
+                                                             savetime__day=day)
+
+    int1 = random.randint(1, para_news_count - 1)
+    int2 = para_news_count - int1
+    r1 = news_domestic.order_by('?')[:int1]
+    r2 = news_international.order_by('?')[:int2]
+    result = r1.union(r2)
+
+    # 下面注释掉的是另一种Django ORM提供的原生方法,但是其不能用在结果的并集中
+    # result = news_all.order_by('?')[:para_news_count]
+    if request.method == 'GET':
+        if (len(result) <= 0):
+            return Response({'info': '找不到这样的新闻', 'code': '599'})
+        result_serializer = NewsListSerializers(result, many=True)
+        return Response(result_serializer.data)
 
 
 
