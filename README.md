@@ -8,7 +8,7 @@
 ## 截图
 
 #### 首页
-![](https://pic-1253509712.cos.ap-shanghai.myqcloud.com/20190531155352.png)
+![](https://i.imgur.com/xE0cHSJ.jpg)
 #### 统计页 
 ![](https://pic-1253509712.cos.ap-shanghai.myqcloud.com/20190531155355.png)
 #### 新闻列表页
